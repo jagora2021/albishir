@@ -1,16 +1,59 @@
 import React from "react";
-import { View } from "react-native";
+import { View, TouchableOpacity, StyleSheet, Text } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-function ContactCard(props) {
-	return <View style={styles.container}></View>;
+import { colors, fonts } from "../constants";
+
+function ContactCard({ onPress, title, subtitle }) {
+	return (
+		<TouchableOpacity onPress={onPress} style={styles.container}>
+			<View style={styles.icon}>
+				<MaterialCommunityIcons
+					name={"account"}
+					size={24}
+					color={colors.darkGrey}
+				/>
+			</View>
+			<View style={styles.textContainer}>
+				<Text style={styles.title}>{title}</Text>
+				<Text style={styles.subTitle}>{subtitle}</Text>
+			</View>
+		</TouchableOpacity>
+	);
 }
+
 const styles = StyleSheet.create({
 	container: {
-		height: 50,
-		backgroundColor: "red",
-		borderRadius: 10,
+		width: "100%",
+		height: 80,
+		borderRadius: 16,
+		borderWidth: 1,
+		borderColor: colors.lightGreyPlus,
+		padding: 15,
+		flexDirection: "row",
+		alignItems: "center",
+		marginVertical: 5,
+	},
+	icon: {
+		width: 48,
+		height: 48,
+		borderRadius: 30,
+		marginLeft: 10,
+		backgroundColor: colors.lightGreyPlus,
 		justifyContent: "center",
-		alignSelf: "center",
+		alignItems: "center",
+	},
+	textContainer: {
+		flexDirection: "column",
+		marginLeft: 10,
+	},
+	title: {
+		fontWeight: fonts.weight.medium,
+		fontSize: fonts.size.ml,
+	},
+	subTitle: {
+		color: colors.darkGrey,
+		fontSize: fonts.size.m,
 	},
 });
 

@@ -1,62 +1,59 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
+import { ContactCard } from "../../components";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { colors, fonts } from "../../constants";
-
+import { colors } from "../../constants";
 export default function TransferScreen() {
 	return (
-		<SafeAreaView
-			style={{ justifyContent: "center", alignItems: "center", flex: 1 }}
-		>
-			<View>
-				<Text>Transfer</Text>
+		<View style={styles.container}>
+			<View style={styles.QrCode}>
+				<View style={styles.cameraContainer}></View>
 			</View>
-			<View style={styles.container}>
-				<View style={styles.icon}>
-					<MaterialCommunityIcons
-						name={"account"}
-						size={24}
-						color={colors.darkGrey}
-					/>
-				</View>
-				<View style={styles.textContainer}>
-					<Text style={styles.title}>Yusuf Dimari</Text>
-					<Text style={styles.subTitle}>08132480901</Text>
-				</View>
+			<View style={styles.search}>
+				<TextInput
+					style={styles.textInput}
+					placeholder="Type to search contact"
+					clearButtonMode="while-editing"
+				/>
+				<TouchableOpacity>
+					<MaterialCommunityIcons name="magnify" size={24} />
+				</TouchableOpacity>
 			</View>
-		</SafeAreaView>
+			<ContactCard title={"Yusuf Muhammad Dimari"} subtitle={"08132480901"} />
+			<ContactCard title={"Yusuf Muhammad Dimari"} subtitle={"08132480901"} />
+		</View>
 	);
 }
 const styles = StyleSheet.create({
 	container: {
-		width: "90%",
-		height: 80,
-		borderRadius: 16,
-		borderWidth: 1,
-		borderColor: colors.lightGreyPlus,
-		padding: 15,
-
-		flexDirection: "row",
-		alignItems: "center",
-	},
-	icon: {
-		width: 48,
-		height: 48,
-		borderRadius: 30,
-		marginLeft: 10,
-		backgroundColor: colors.lightGreyPlus,
 		justifyContent: "center",
 		alignItems: "center",
+		flex: 1,
+		padding: 15,
 	},
-	textContainer: {
-		flexDirection: "column",
-		marginLeft: 20,
+	search: {
+		padding: 15,
+		width: "100%",
+		height: 48,
+		backgroundColor: colors.lightGreyPlus,
+		borderRadius: 8,
+		alignItems: "center",
+		justifyContent: "space-between",
+		flexDirection: "row",
+		paddingLeft: 30,
 	},
-	title: {
-		fontWeight: fonts.weight.medium,
-		fontSize: fonts.size.ml,
+	textInput: {
+		width: 259,
 	},
-	subTitle: {
-		color: colors.darkGrey,
+	QrCode: {
+		width: "100%",
+		borderRadius: 8,
+		height: 90,
+		backgroundColor: colors.lightGreen,
+	},
+	cameraContainer: {
+		width: 56,
+		height: 56,
+		backgroundColor: colors.primary,
 	},
 });

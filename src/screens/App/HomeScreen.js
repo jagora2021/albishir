@@ -1,8 +1,18 @@
 import React from "react";
-import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import {
+	ScrollView,
+	Image,
+	ImageBackground,
+	StyleSheet,
+	Text,
+	View,
+	TouchableOpacity,
+	Dimensions,
+} from "react-native";
 
-import { CustomHeader } from "../../components";
+import { CustomHeader, HistoryCard } from "../../components";
 import { colors, fonts } from "../../constants";
+
 export default function HomeScreen() {
 	return (
 		<View style={styles.container}>
@@ -26,6 +36,43 @@ export default function HomeScreen() {
 					<Text style={styles.amount}>₦12,400.00</Text>
 				</View>
 			</ImageBackground>
+
+			<View style={styles.historyHeader}>
+				<Text style={styles.historyHeaderText}>History</Text>
+				<TouchableOpacity>
+					<Text style={styles.viewAllText}>View all</Text>
+				</TouchableOpacity>
+			</View>
+
+			<ScrollView bounces={false}>
+				<View>
+					<HistoryCard
+						title="Glory Azul"
+						subTitle="Oct 14, 10:24 AM"
+						amount="-₦15.00"
+					/>
+					<HistoryCard
+						title="Sara Ibrahim"
+						subTitle="Oct 14, 10:24 AM"
+						amount="-₦21.00"
+					/>
+					<HistoryCard
+						title="Ahmad Ibrahim"
+						subTitle="Oct 14, 10:24 AM"
+						amount="+₦20.00"
+					/>
+					<HistoryCard
+						title="Yusuf Muhammad"
+						subTitle="Oct 14, 10:24 AM"
+						amount="-₦13.00"
+					/>
+					<HistoryCard
+						title="Ahmad Umar"
+						subTitle="Oct 14, 10:24 AM"
+						amount="+₦18.00"
+					/>
+				</View>
+			</ScrollView>
 		</View>
 	);
 }
@@ -33,12 +80,17 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: colors.lightGrey,
 	},
 	cardBackground: {
-		height: 250,
+		marginHorizontal: 10,
+		borderRadius: 15,
+		overflow: "hidden",
 		padding: 20,
 		justifyContent: "space-between",
+		height:
+			Dimensions.get("window").height < 600
+				? Dimensions.get("window").height / 3.5
+				: 230,
 	},
 	top: {
 		flexDirection: "row",
@@ -66,5 +118,21 @@ const styles = StyleSheet.create({
 	amount: {
 		fontSize: fonts.size.xxl,
 		fontWeight: fonts.weight.bold,
+	},
+	historyHeader: {
+		marginHorizontal: 20,
+		paddingTop: 10,
+		paddingBottom: 5,
+		flexDirection: "row",
+		justifyContent: "space-between",
+	},
+	historyHeaderText: {
+		fontWeight: fonts.weight.semiBold,
+		fontSize: fonts.size.ml,
+	},
+	viewAllText: {
+		color: colors.blue,
+		fontWeight: fonts.weight.bold,
+		fontSize: fonts.size.ml,
 	},
 });
