@@ -1,46 +1,79 @@
 import React from "react";
-import { StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
-import { ContactCard } from "../../components";
+import {
+	StyleSheet,
+	View,
+	TextInput,
+	TouchableOpacity,
+	Text,
+	TouchableWithoutFeedback,
+	Keyboard,
+	ScrollView,
+} from "react-native";
+
+import { ContactCard, CustomHeader } from "../../components";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { colors } from "../../constants";
+import { colors, fonts } from "../../constants";
 export default function TransferScreen() {
 	return (
-		<View style={styles.container}>
-			<View style={styles.QrCode}>
-				<View style={styles.cameraContainer}></View>
-			</View>
-			<View style={styles.search}>
-				<TextInput
-					style={styles.textInput}
-					placeholder="Type to search contact"
-					clearButtonMode="while-editing"
-				/>
-				<TouchableOpacity>
-					<MaterialCommunityIcons name="magnify" size={24} />
-				</TouchableOpacity>
-			</View>
-			<ContactCard title={"Yusuf Muhammad Dimari"} subtitle={"08132480901"} />
-			<ContactCard title={"Yusuf Muhammad Dimari"} subtitle={"08132480901"} />
-		</View>
+		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+			<ScrollView>
+				<View style={styles.container}>
+					<CustomHeader />
+					<TouchableOpacity style={styles.QrCode}>
+						<View style={styles.cameraContainer}>
+							<MaterialCommunityIcons name={"qrcode-scan"} size={40} />
+						</View>
+						<Text style={styles.QrText}>Scan QR</Text>
+					</TouchableOpacity>
+					<Text style={styles.sendTo}>Send To</Text>
+
+					<View style={styles.search}>
+						<TextInput
+							style={styles.textInput}
+							placeholder="Type to search contact"
+							clearButtonMode="while-editing"
+						/>
+						<TouchableOpacity>
+							<MaterialCommunityIcons name="magnify" size={24} />
+						</TouchableOpacity>
+					</View>
+					<ContactCard
+						title={"Yusuf Muhammad Dimari"}
+						subtitle={"08132480901"}
+					/>
+					<ContactCard
+						title={"Yusuf Muhammad Dimari"}
+						subtitle={"08132480901"}
+					/>
+					<ContactCard
+						title={"Yusuf Muhammad Dimari"}
+						subtitle={"08132480901"}
+					/>
+					<ContactCard
+						title={"Yusuf Muhammad Dimari"}
+						subtitle={"08132480901"}
+					/>
+				</View>
+			</ScrollView>
+		</TouchableWithoutFeedback>
 	);
 }
 const styles = StyleSheet.create({
 	container: {
-		justifyContent: "center",
-		alignItems: "center",
 		flex: 1,
 		padding: 15,
 	},
 	search: {
-		padding: 15,
-		width: "100%",
-		height: 48,
+		alignItems: "center",
 		backgroundColor: colors.lightGreyPlus,
 		borderRadius: 8,
-		alignItems: "center",
-		justifyContent: "space-between",
 		flexDirection: "row",
+		height: 48,
+		justifyContent: "space-between",
+		marginVertical: 10,
+		padding: 15,
 		paddingLeft: 30,
+		width: "100%",
 	},
 	textInput: {
 		width: 259,
@@ -49,11 +82,27 @@ const styles = StyleSheet.create({
 		width: "100%",
 		borderRadius: 8,
 		height: 90,
-		backgroundColor: colors.lightGreen,
+		backgroundColor: colors.primary,
+		justifyContent: "center",
+		alignItems: "center",
+		padding: 15,
+		flexDirection: "row",
+		marginBottom: 30,
 	},
 	cameraContainer: {
 		width: 56,
 		height: 56,
-		backgroundColor: colors.primary,
+		justifyContent: "center",
+		alignItems: "center",
+	},
+	QrText: {
+		fontSize: fonts.size.xxl,
+		fontWeight: fonts.weight.medium,
+		marginLeft: 10,
+	},
+	sendTo: {
+		fontSize: fonts.size.l,
+		fontWeight: fonts.weight.semiBold,
+		marginVertical: 10,
 	},
 });

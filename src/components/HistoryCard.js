@@ -36,7 +36,6 @@ export default function HistoryCard({ title, subTitle, amount }) {
 
 const styles = StyleSheet.create({
 	container: {
-		paddingHorizontal: 20,
 		paddingVertical: 10,
 		flexDirection: "row",
 		justifyContent: "space-between",

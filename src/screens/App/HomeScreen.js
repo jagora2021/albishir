@@ -1,3 +1,4 @@
+import { AntDesign } from "@expo/vector-icons";
 import React from "react";
 import {
 	ScrollView,
@@ -10,69 +11,40 @@ import {
 	Dimensions,
 } from "react-native";
 
-import { CustomHeader, HistoryCard } from "../../components";
+import { CustomHeader } from "../../components";
 import { colors, fonts } from "../../constants";
 
 export default function HomeScreen() {
 	return (
 		<View style={styles.container}>
 			<CustomHeader />
-			<ImageBackground
-				style={styles.cardBackground}
-				source={require("../../../assets/images/dashboard-card-frame.png")}
-			>
-				<View style={styles.cardTop}>
-					<View style={styles.top}>
-						<Text style={styles.profileText}>Profile</Text>
-						<Image
-							style={styles.cardProfileImage}
-							source={require("../../../assets/images/profile-pic-sm.png")}
-						/>
-					</View>
-					<Text style={styles.greetingText}>Hi, Lawal</Text>
-				</View>
-				<View style={styles.bottom}>
-					<Text style={styles.totalText}>Total Balance</Text>
-					<Text style={styles.amount}>₦12,400.00</Text>
-				</View>
-			</ImageBackground>
 
-			<View style={styles.historyHeader}>
-				<Text style={styles.historyHeaderText}>History</Text>
-				<TouchableOpacity>
-					<Text style={styles.viewAllText}>View all</Text>
-				</TouchableOpacity>
+			<View style={styles.profileSection}>
+				<Image
+					style={styles.profileImage}
+					source={require("../../../assets/images/profile-pic-lg.png")}
+				/>
+				<Text style={styles.name}>Lawal Sanni</Text>
 			</View>
 
-			<ScrollView bounces={false}>
-				<View>
-					<HistoryCard
-						title="Glory Azul"
-						subTitle="Oct 14, 10:24 AM"
-						amount="-₦15.00"
-					/>
-					<HistoryCard
-						title="Sara Ibrahim"
-						subTitle="Oct 14, 10:24 AM"
-						amount="-₦21.00"
-					/>
-					<HistoryCard
-						title="Ahmad Ibrahim"
-						subTitle="Oct 14, 10:24 AM"
-						amount="+₦20.00"
-					/>
-					<HistoryCard
-						title="Yusuf Muhammad"
-						subTitle="Oct 14, 10:24 AM"
-						amount="-₦13.00"
-					/>
-					<HistoryCard
-						title="Ahmad Umar"
-						subTitle="Oct 14, 10:24 AM"
-						amount="+₦18.00"
+			<View style={styles.bottom}>
+				<View style={styles.qrCodeSection}>
+					<Image
+						style={styles.qrCode}
+						source={require("../../../assets/images/QRCode.png")}
 					/>
 				</View>
-			</ScrollView>
+
+				<TouchableOpacity style={styles.printButton}>
+					<Text>Print QR</Text>
+					<AntDesign
+						style={styles.printIcon}
+						name="printer"
+						size={24}
+						color={colors.dark}
+					/>
+				</TouchableOpacity>
+			</View>
 		</View>
 	);
 }
@@ -81,58 +53,44 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 	},
-	cardBackground: {
-		marginHorizontal: 10,
-		borderRadius: 15,
-		overflow: "hidden",
-		padding: 20,
-		justifyContent: "space-between",
-		height:
-			Dimensions.get("window").height < 600
-				? Dimensions.get("window").height / 3.5
-				: 230,
+	profileSection: {
+		alignItems: "center",
+		marginVertical: 15,
+		flex: 0.3,
 	},
-	top: {
-		flexDirection: "row",
-		justifyContent: "space-between",
+	profileImage: {
+		width: Dimensions.get("window").height < 700 ? 120 : 150,
+		height: Dimensions.get("window").height < 700 ? 120 : 150,
+		borderRadius: 75,
+		backgroundColor: colors.grey,
 	},
-	cardProfileImage: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
-	},
-	profileText: {
-		fontSize: fonts.size.l,
-		fontWeight: fonts.weight.semiBold,
-	},
-	greetingText: {
-		color: colors.mediumGrey,
-		fontSize: fonts.size.ml,
-		fontWeight: fonts.weight.semiBold,
-	},
-	totalText: {
-		fontSize: fonts.size.l,
-		color: colors.dark,
-		marginTop: 15,
-	},
-	amount: {
-		fontSize: fonts.size.xxl,
+	name: {
+		textAlign: "center",
+		fontSize: fonts.size.xl,
 		fontWeight: fonts.weight.bold,
+		marginTop: 5,
 	},
-	historyHeader: {
-		marginHorizontal: 20,
-		paddingTop: 10,
-		paddingBottom: 5,
-		flexDirection: "row",
-		justifyContent: "space-between",
+	bottom: {
+		flex: 0.7,
+		alignItems: "center",
 	},
-	historyHeaderText: {
-		fontWeight: fonts.weight.semiBold,
-		fontSize: fonts.size.ml,
+	qrCodeSection: {},
+	qrCode: {
+		width: Dimensions.get("window").height < 700 ? 200 : 250,
+		height: Dimensions.get("window").height < 700 ? 200 : 250,
 	},
-	viewAllText: {
-		color: colors.blue,
-		fontWeight: fonts.weight.bold,
-		fontSize: fonts.size.ml,
+	printButton: {
+		width: "70%",
+		borderColor: colors.dark,
+		borderWidth: 1,
+		height: 50,
+		justifyContent: "center",
+		alignItems: "center",
+		borderRadius: 16,
+		marginTop: 10,
+	},
+	printIcon: {
+		position: "absolute",
+		right: 30,
 	},
 });

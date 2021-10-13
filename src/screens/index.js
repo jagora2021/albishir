@@ -9,4 +9,7 @@ export { default as HistoryScreen } from "./App/HistoryScreen";
 export { default as ProfileScreen } from "./App/ProfileScreen";
 export { default as SettingsScreen } from "./App/SettingsScreen";
 export { default as TransferScreen } from "./App/TransferScreen";
+export { default as TransferAmountScreen } from "./App/TransferAmountScreen";
 export { default as MoreScreen } from "./App/MoreScreen";
+export { default as ExpensesScreen } from "./App/ExpensesScreen";
+export { default as IncomesScreen } from "./App/IncomesScreen";

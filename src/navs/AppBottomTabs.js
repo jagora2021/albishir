@@ -11,6 +11,7 @@ import {
 	HomeScreen,
 	HistoryScreen,
 	TransferScreen,
+	TransferAmountScreen,
 	MoreScreen,
 } from "../screens";
 import { colors } from "../constants";
@@ -75,7 +76,7 @@ export default function AppBottomTabs() {
 			/>
 			<Tab.Screen
 				name="Transfer"
-				component={TransferScreen}
+				component={TransferAmountScreen}
 				options={{
 					tabBarIcon: ({ color, size }) => (
 						<Ionicons name="swap-vertical" size={size} color={color} />
