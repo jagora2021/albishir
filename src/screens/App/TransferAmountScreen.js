@@ -11,14 +11,14 @@ function TransferAmountScreen(props) {
 					<Text>Enter the amount to send</Text>
 					<Text style={styles.amount}>N1000.00</Text>
 				</View>
-				<View style={styles.AmountRecommendation}>
-					<View style={recAmountContainer}>
+				<View style={styles.amountRecommendation}>
+					<View style={styles.recAmountContainer}>
 						<Text style={styles.recAmount}>N1000.00</Text>
 					</View>
-					<View style={recAmountContainer}>
+					<View style={styles.recAmountContainer}>
 						<Text style={styles.recAmount}>N1000.00</Text>
 					</View>
-					<View style={recAmountContainer}>
+					<View style={styles.recAmountContainer}>
 						<Text style={styles.recAmount}>N1000.00</Text>
 					</View>
 				</View>

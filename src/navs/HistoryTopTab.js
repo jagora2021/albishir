@@ -1,7 +1,8 @@
 import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-import { ExpensesScreen, IncomesScreen } from "../screens";
+import IncomesScreen from "../screens/App/IncomesScreen";
+import ExpensesScreen from "../screens/App/ExpensesScreen";
 import { colors, fonts } from "../constants";
 
 const TopTab = createMaterialTopTabNavigator();

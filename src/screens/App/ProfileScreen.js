@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
 	ScrollView,
 	Image,
@@ -9,11 +9,43 @@ import {
 	TouchableOpacity,
 	Dimensions,
 } from "react-native";
+import axios from "axios";
 
 import { CustomHeader, HistoryCard } from "../../components";
 import { colors, fonts } from "../../constants";
 
 export default function ProfileScreen() {
+	useEffect(() => {
+		fetch("https://fsi.ng/api/woven/vnubans/create_customer", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				"api-secret": "vb_ls_bfac75fe54a952841971b6918d06aeb2659523dc92d6",
+				"sandbox-key": "8wnheaSRHdj1gmkvCdN3uWvnf4rd6ni11634149218",
+			},
+			body: JSON.stringify({
+				customer_reference: "Abubakar",
+				name: "Abubakar Yahya Mana",
+				email: "jones_adelaide@mail.com",
+				mobile_number: "08012345678",
+				expires_on: "2021-11-01",
+				use_frequency: "5",
+				min_amount: 100,
+				max_amount: 12000,
+				callback_url: "https://requesturl.com",
+				destination_nuban: "",
+				meta_data: {
+					somedatakey: "somedatavalue",
+				},
+			}),
+		})
+			.then(res => res.json())
+			.then(data => console.log(data))
+			.catch(error => {
+				console.log(error.message);
+			});
+	});
+
 	return (
 		<View style={styles.container}>
 			<CustomHeader />
