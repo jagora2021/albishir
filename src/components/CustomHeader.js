@@ -5,7 +5,7 @@ import { colors } from "../constants";
 
 export default function CustomHeader() {
 	return (
-		<View style={{ width: "100%", height: 80, backgroundColor: colors.white }}>
+		<View style={styles.container}>
 			<Image
 				resizeMode="contain"
 				style={{ width: "100%", height: "100%" }}
@@ -15,4 +15,10 @@ export default function CustomHeader() {
 	);
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	container: {
+		width: "100%",
+		height: 80,
+		backgroundColor: colors.white,
+	},
+});

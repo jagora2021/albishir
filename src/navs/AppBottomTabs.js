@@ -22,20 +22,27 @@ export default function AppBottomTabs() {
 		<Tab.Navigator
 			screenOptions={{
 				headerShown: false,
-				tabBarActiveBackgroundColor: "black",
+				tabBarActiveBackgroundColor: colors.lightGreen,
 				tabBarItemStyle: { borderRadius: 8 },
 				tabBarInactiveTintColor: colors.black,
-				tabBarActiveTintColor: colors.white,
+				tabBarActiveTintColor: colors.black,
 				tabBarLabelStyle: {
 					fontSize: 12,
+					marginBottom: 5,
 				},
 				tabBarStyle: {
 					position: "absolute",
 					bottom: 15,
 					left: 15,
 					right: 15,
-					elevation: 0,
+					shadowColor: "rgba(0, 0, 0, 0.3)",
+					shadowOffset: { width: 0, height: 2 },
+					shadowOpacity: 0.8,
+					shadowRadius: 1,
+					elevation: 2,
+					borderTopWidth: 0,
 					height: 59,
+					borderRadius: 8,
 				},
 			}}
 		>
