@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	Dimensions,
 	Keyboard,
-	KeyboardAvoidingView,
 	ScrollView,
 	StyleSheet,
 	Text,
@@ -14,8 +13,17 @@ import {
 
 import { AuthButton, CustomHeader } from "../../components";
 import { colors, fonts } from "../../constants";
+import { useAuthContext } from "../../contexts/AuthProvider";
 
 export default function LoginScreen({ navigation }) {
+	const { login } = useAuthContext();
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	const handleSubmit = () => {
+		login(email, password);
+	};
+
 	return (
 		<ScrollView>
 			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -29,15 +37,19 @@ export default function LoginScreen({ navigation }) {
 							placeholder="Email"
 							keyboardType="email-address"
 							autoCapitalize="none"
+							value={email}
+							onChangeText={setEmail}
 						/>
 						<TextInput
 							style={styles.textInput}
 							placeholder="Password"
 							secureTextEntry
+							value={password}
+							onChangeText={setPassword}
 						/>
 					</View>
 					<View style={styles.bottom}>
-						<AuthButton title="Log in" onPress={() => {}} />
+						<AuthButton title="Log in" onPress={handleSubmit} />
 						<TouchableOpacity
 							style={styles.bottomTextContainer}
 							onPress={() => navigation.navigate("Signup")}

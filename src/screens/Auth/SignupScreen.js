@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	Dimensions,
 	Keyboard,
@@ -13,8 +13,26 @@ import {
 
 import { AuthButton, CustomHeader } from "../../components";
 import { colors, fonts } from "../../constants";
+import { useAuthContext } from "../../contexts/AuthProvider";
 
 export default function SignupScreen({ navigation }) {
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	const { setSignupDetails, signupDetails } = useAuthContext();
+
+	const handleSubmit = () => {
+		setSignupDetails({
+			...signupDetails,
+			firstName,
+			lastName,
+			email,
+			password,
+		});
+	};
+
 	return (
 		<ScrollView>
 			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -23,24 +41,41 @@ export default function SignupScreen({ navigation }) {
 					<View style={styles.form}>
 						<Text style={styles.formTitle}>Register</Text>
 
-						<TextInput style={styles.textInput} placeholder="First name" />
-						<TextInput style={styles.textInput} placeholder="Last name" />
+						<TextInput
+							style={styles.textInput}
+							placeholder="First name"
+							value={firstName}
+							onChangeText={setFirstName}
+						/>
+						<TextInput
+							style={styles.textInput}
+							placeholder="Last name"
+							value={lastName}
+							onChangeText={setLastName}
+						/>
 						<TextInput
 							style={styles.textInput}
 							placeholder="Email"
 							keyboardType="email-address"
 							autoCapitalize="none"
+							value={email}
+							onChangeText={setEmail}
 						/>
 						<TextInput
 							style={styles.textInput}
 							placeholder="Password"
 							secureTextEntry
+							value={password}
+							onChangeText={setPassword}
 						/>
 					</View>
 					<View style={styles.bottom}>
 						<AuthButton
 							title="Continue"
-							onPress={() => navigation.navigate("Identification")}
+							onPress={() => {
+								handleSubmit();
+								navigation.navigate("Identification");
+							}}
 						/>
 						<TouchableOpacity
 							style={styles.bottomTextContainer}

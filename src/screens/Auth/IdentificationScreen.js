@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	Keyboard,
 	ScrollView,
@@ -12,8 +12,21 @@ import {
 
 import { AuthButton, CustomHeader } from "../../components";
 import { colors, fonts } from "../../constants";
+import { useAuthContext } from "../../contexts/AuthProvider";
 
 export default function IdentificationScreen({ navigation }) {
+	const { signupDetails, setSignupDetails } = useAuthContext();
+	const [phoneNumber, setPhoneNumber] = useState("");
+	const [nin, setNin] = useState("");
+
+	const handleSubmit = () => {
+		setSignupDetails({
+			...signupDetails,
+			nin: nin,
+			phoneNumber,
+		});
+	};
+
 	return (
 		<ScrollView>
 			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -26,8 +39,15 @@ export default function IdentificationScreen({ navigation }) {
 							style={styles.textInput}
 							placeholder="Phone number"
 							keyboardType="number-pad"
+							value={phoneNumber}
+							onChangeText={setPhoneNumber}
 						/>
-						<TextInput style={styles.textInput} placeholder="NIN" />
+						<TextInput
+							style={styles.textInput}
+							placeholder="NIN"
+							value={nin}
+							onChangeText={setNin}
+						/>
 						<TextInput
 							style={styles.textInput}
 							placeholder="Upload proof of NIN"
@@ -36,7 +56,10 @@ export default function IdentificationScreen({ navigation }) {
 					<View style={styles.bottom}>
 						<AuthButton
 							title="Continue"
-							onPress={() => navigation.navigate("Link Bank")}
+							onPress={() => {
+								handleSubmit();
+								navigation.navigate("Link Bank");
+							}}
 						/>
 						<TouchableOpacity
 							style={styles.bottomTextContainer}

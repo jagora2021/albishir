@@ -12,11 +12,33 @@ import {
 
 import { AuthButton, CustomHeader } from "../../components";
 import { colors, fonts } from "../../constants";
+import { useAuthContext } from "../../contexts/AuthProvider";
 
 export default function LinkBankScreen({ navigation }) {
+	const { setSignupDetails, signupDetails, signup } = useAuthContext();
 	const [accountNumber, setAccountNumber] = useState("");
 	const [bankName, setBankName] = useState("");
 	const [bvn, setBvn] = useState("");
+
+	const handleSubmit = () => {
+		setSignupDetails({
+			...signupDetails,
+			accountNumber,
+			bankName,
+			bvn,
+		});
+	};
+
+	const handleLogin = () => {
+		signup(
+			signupDetails.email,
+			signupDetails.password,
+			signupDetails.nin,
+			signupDetails.phoneNumber,
+			signupDetails.firstName,
+			signupDetails.lastName
+		);
+	};
 
 	return (
 		<ScrollView>
@@ -50,7 +72,10 @@ export default function LinkBankScreen({ navigation }) {
 					<View style={styles.bottom}>
 						<AuthButton
 							title="Sign up"
-							onPress={() => navigation.navigate("Link Bank")}
+							onPress={() => {
+								handleSubmit();
+								handleLogin();
+							}}
 						/>
 						<TouchableOpacity
 							style={styles.bottomTextContainer}

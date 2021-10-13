@@ -13,8 +13,11 @@ import {
 
 import { CustomHeader } from "../../components";
 import { colors, fonts } from "../../constants";
+import { useAuthContext } from "../../contexts/AuthProvider";
 
 export default function HomeScreen() {
+	const { logout } = useAuthContext();
+
 	return (
 		<View style={styles.container}>
 			<CustomHeader />
@@ -24,7 +27,9 @@ export default function HomeScreen() {
 					style={styles.profileImage}
 					source={require("../../../assets/images/profile-pic-lg.png")}
 				/>
-				<Text style={styles.name}>Lawal Sanni</Text>
+				<Text onPress={logout} style={styles.name}>
+					Lawal Sanni
+				</Text>
 			</View>
 
 			<View style={styles.bottom}>

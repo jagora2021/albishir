@@ -4,16 +4,21 @@ import { StyleSheet, SafeAreaView, StatusBar } from "react-native";
 
 import { colors } from "./src/constants";
 import Navigator from "./src/navs";
+import { AuthProvider } from "./src/contexts/AuthProvider";
 
 export default function App() {
 	return (
-		<SafeAreaView style={styles.container}>
-			<StatusBar backgroundColor={colors.white} barStyle="dark-content" />
-			<Navigator />
-		</SafeAreaView>
+		<AuthProvider>
+			<SafeAreaView style={styles.container}>
+				<StatusBar backgroundColor={colors.white} barStyle="dark-content" />
+				<Navigator />
+			</SafeAreaView>
+		</AuthProvider>
 	);
 }
 
 const styles = StyleSheet.create({
-	container: { flex: 1 },
+	container: {
+		flex: 1,
+	},
 });
