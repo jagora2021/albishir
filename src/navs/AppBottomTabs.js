@@ -83,7 +83,7 @@ export default function AppBottomTabs() {
 					),
 				}}
 			/>
-			<Tab.Screen
+			{/* <Tab.Screen
 				name="More"
 				component={MoreScreen}
 				options={{
@@ -95,7 +95,7 @@ export default function AppBottomTabs() {
 						/>
 					),
 				}}
-			/>
+			/> */}
 		</Tab.Navigator>
 	);
 }
