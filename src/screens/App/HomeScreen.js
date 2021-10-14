@@ -1,4 +1,4 @@
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import React from "react";
 import QRCode from "react-native-qrcode-svg";
 import {
@@ -22,10 +22,13 @@ export default function HomeScreen() {
 			<CustomHeader />
 
 			<View style={styles.profileSection}>
-				<Image
+				<View style={styles.avatarBg}>
+					{/* <Image
 					style={styles.profileImage}
 					source={require("../../../assets/images/profile-pic-lg.png")}
-				/>
+				/> */}
+					<Ionicons name="person" size={70} color={colors.darkGrey} />
+				</View>
 				<Text style={styles.name}>{currentUser.displayName}</Text>
 			</View>
 
@@ -39,6 +42,7 @@ export default function HomeScreen() {
 						value={currentUser.displayName}
 						color="black"
 						backgroundColor="white"
+						enableLinearGradient
 						size={Dimensions.get("window").height < 700 ? 200 : 250}
 					/>
 				</View>
@@ -76,7 +80,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		fontSize: fonts.size.xl,
 		fontWeight: fonts.weight.bold,
-		marginTop: 5,
+		marginTop: 10,
 	},
 	bottom: {
 		flex: 0.7,
@@ -95,10 +99,18 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 		borderRadius: 16,
-		marginTop: 10,
+		marginTop: 30,
 	},
 	printIcon: {
 		position: "absolute",
 		right: 30,
+	},
+	avatarBg: {
+		width: Dimensions.get("window").height < 700 ? 120 : 150,
+		height: Dimensions.get("window").height < 700 ? 120 : 150,
+		borderRadius: 75,
+		backgroundColor: colors.grey,
+		justifyContent: "center",
+		alignItems: "center",
 	},
 });
