@@ -19,9 +19,12 @@ export default function LoginScreen({ navigation }) {
 	const { login } = useAuthContext();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
 
 	const handleSubmit = () => {
+		setIsLoading(true);
 		login(email, password);
+		setIsLoading(false);
 	};
 
 	return (
@@ -49,7 +52,11 @@ export default function LoginScreen({ navigation }) {
 						/>
 					</View>
 					<View style={styles.bottom}>
-						<AuthButton title="Log in" onPress={handleSubmit} />
+						<AuthButton
+							title="Log in"
+							isLoading={isLoading}
+							onPress={handleSubmit}
+						/>
 						<TouchableOpacity
 							style={styles.bottomTextContainer}
 							onPress={() => navigation.navigate("Signup")}

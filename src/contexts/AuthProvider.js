@@ -17,7 +17,8 @@ export function AuthProvider({ children }) {
 		nin,
 		phoneNumber,
 		firstName,
-		lastName
+		lastName,
+		virtualUserData
 	) => {
 		try {
 			const cred = await auth.createUserWithEmailAndPassword(email, password);
@@ -31,6 +32,12 @@ export function AuthProvider({ children }) {
 						nin,
 						phoneNumber,
 					});
+				})
+				.then(() => {
+					db.collection("users")
+						.doc(cred.user.uid)
+						.collection("virtualUserBank")
+						.add({ ...virtualUserData });
 				})
 				.catch(err => {
 					console.log(err);

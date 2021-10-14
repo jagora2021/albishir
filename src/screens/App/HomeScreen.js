@@ -1,9 +1,7 @@
 import { AntDesign } from "@expo/vector-icons";
 import React from "react";
 import {
-	ScrollView,
 	Image,
-	ImageBackground,
 	StyleSheet,
 	Text,
 	View,
@@ -16,7 +14,7 @@ import { colors, fonts } from "../../constants";
 import { useAuthContext } from "../../contexts/AuthProvider";
 
 export default function HomeScreen() {
-	const { logout } = useAuthContext();
+	const { logout, currentUser } = useAuthContext();
 
 	return (
 		<View style={styles.container}>
@@ -28,7 +26,7 @@ export default function HomeScreen() {
 					source={require("../../../assets/images/profile-pic-lg.png")}
 				/>
 				<Text onPress={logout} style={styles.name}>
-					Lawal Sanni
+					{currentUser.displayName}
 				</Text>
 			</View>
 

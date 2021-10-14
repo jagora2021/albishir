@@ -1,11 +1,22 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+	ActivityIndicator,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from "react-native";
+
 import { colors, fonts } from "../constants";
 
-export default function AuthButton({ title, onPress }) {
+export default function AuthButton({ title, onPress, isLoading = false }) {
 	return (
 		<TouchableOpacity onPress={onPress} style={styles.button}>
-			<Text style={styles.text}>{title}</Text>
+			{isLoading ? (
+				<ActivityIndicator size="large" color={colors.white} />
+			) : (
+				<Text style={styles.text}>{title}</Text>
+			)}
 		</TouchableOpacity>
 	);
 }
