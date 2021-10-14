@@ -14,7 +14,7 @@ import { colors, fonts } from "../../constants";
 import { useAuthContext } from "../../contexts/AuthProvider";
 
 export default function HomeScreen() {
-	const { logout, currentUser } = useAuthContext();
+	const { currentUser } = useAuthContext();
 
 	return (
 		<View style={styles.container}>
@@ -25,9 +25,7 @@ export default function HomeScreen() {
 					style={styles.profileImage}
 					source={require("../../../assets/images/profile-pic-lg.png")}
 				/>
-				<Text onPress={logout} style={styles.name}>
-					{currentUser.displayName}
-				</Text>
+				<Text style={styles.name}>{currentUser.displayName}</Text>
 			</View>
 
 			<View style={styles.bottom}>

@@ -1,3 +1,4 @@
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
 import {
 	ScrollView,
@@ -18,6 +19,8 @@ import { useAuthContext } from "../../contexts/AuthProvider";
 export default function ProfileScreen({ navigation }) {
 	const { currentUser } = useAuthContext();
 	const [transactions, setTransactions] = useState([]);
+
+	const { logout } = useAuthContext();
 
 	useEffect(() => {
 		fetch(
@@ -55,8 +58,17 @@ export default function ProfileScreen({ navigation }) {
 					</Text>
 				</View>
 				<View style={styles.bottom}>
-					<Text style={styles.totalText}>Total Balance</Text>
-					<Text style={styles.amount}>₦12,400.00</Text>
+					<View>
+						<Text style={styles.totalText}>Total Balance</Text>
+						<Text style={styles.amount}>₦12,400.00</Text>
+					</View>
+
+					<TouchableOpacity
+						onPress={logout}
+						style={{ position: "absolute", bottom: 10, right: 0 }}
+					>
+						<MaterialCommunityIcons name="logout" size={30} color="red" />
+					</TouchableOpacity>
 				</View>
 			</ImageBackground>
 
@@ -163,7 +175,6 @@ const styles = StyleSheet.create({
 	totalText: {
 		fontSize: fonts.size.l,
 		color: colors.dark,
-		marginTop: 15,
 	},
 	amount: {
 		fontSize: fonts.size.xxl,
@@ -187,5 +198,10 @@ const styles = StyleSheet.create({
 	},
 	historyCardContainer: {
 		paddingHorizontal: 20,
+	},
+	bottom: {
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "space-between",
 	},
 });
