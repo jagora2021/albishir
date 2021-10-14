@@ -57,8 +57,8 @@ export default function AppBottomTabs() {
 				}}
 			/>
 			<Tab.Screen
-				name="Profile"
-				component={ProfileScreen}
+				name="Transfer"
+				component={AppStackNavigator}
 				options={{
 					tabBarIcon: ({ color, size }) => (
 						<Ionicons name="swap-vertical" size={size} color={color} />
@@ -75,11 +75,11 @@ export default function AppBottomTabs() {
 				}}
 			/>
 			<Tab.Screen
-				name="Transfer"
-				component={AppStackNavigator}
+				name="Profile"
+				component={ProfileScreen}
 				options={{
 					tabBarIcon: ({ color, size }) => (
-						<Ionicons name="swap-vertical" size={size} color={color} />
+						<Ionicons name="ios-person-outline" size={size} color={color} />
 					),
 				}}
 			/>
