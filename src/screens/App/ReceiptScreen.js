@@ -1,5 +1,12 @@
 import React from "react";
-import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
+import {
+	Text,
+	View,
+	StyleSheet,
+	TouchableOpacity,
+	Image,
+	ScrollView,
+} from "react-native";
 
 import { colors, fonts } from "../../constants";
 import { CustomHeader } from "../../components";
@@ -9,45 +16,47 @@ import { useAuthContext } from "../../contexts/AuthProvider";
 function Receipt({ route }) {
 	const { currentUser } = useAuthContext();
 	return (
-		<View style={styles.screen}>
-			<CustomHeader />
+		<ScrollView>
+			<View style={styles.screen}>
+				{/* Top Container */}
 
-			{/* Top Container */}
-
-			<View style={styles.topContainer}>
-				<Text style={styles.title}>My Receipt</Text>
-				<View style={styles.iconContainer}>
-					<MaterialCommunityIcons name={"check"} size={24} />
-				</View>
-				<Text style={styles.title}>Transfer Done</Text>
-			</View>
-
-			{/* Bottom Container */}
-
-			<View style={styles.bottomContainer}>
-				<View style={styles.receierDetails}>
-					<Image
-						source={require("../../../assets/images/profile-pic-lg.png")}
-						style={styles.img}
-					/>
-					<View style={styles.receiverDetail}>
-						<Text style={styles.transTitle}>Receipt</Text>
-						<Text style={styles.transSubTitle}>{currentUser.displayName}</Text>
+				<View style={styles.topContainer}>
+					<Text style={styles.title}>My Receipt</Text>
+					<View style={styles.iconContainer}>
+						<MaterialCommunityIcons name={"check"} size={24} />
 					</View>
+					<Text style={styles.title}>Transfer Done</Text>
 				</View>
-				<View style={styles.receiptDetail}>
-					<Text style={styles.transTitle}>Reference number</Text>
-					<Text style={styles.transSubTitle}>#D79004321786</Text>
+
+				{/* Bottom Container */}
+
+				<View style={styles.bottomContainer}>
+					<View style={styles.receierDetails}>
+						<Image
+							source={require("../../../assets/images/profile-pic-lg.png")}
+							style={styles.img}
+						/>
+						<View style={styles.receiverDetail}>
+							<Text style={styles.transTitle}>Receipt</Text>
+							<Text style={styles.transSubTitle}>
+								{currentUser.displayName}
+							</Text>
+						</View>
+					</View>
+					<View style={styles.receiptDetail}>
+						<Text style={styles.transTitle}>Reference number</Text>
+						<Text style={styles.transSubTitle}>#D79004321786</Text>
+					</View>
+					<View style={styles.receiptDetail}>
+						<Text style={styles.transTitle}>Amount Sent</Text>
+						<Text style={styles.transSubTitle}>₦{route.params.amount}</Text>
+					</View>
+					<TouchableOpacity style={styles.button}>
+						<Text style={styles.buttonTitle}>Share Receipt</Text>
+					</TouchableOpacity>
 				</View>
-				<View style={styles.receiptDetail}>
-					<Text style={styles.transTitle}>Amount Sent</Text>
-					<Text style={styles.transSubTitle}>₦{route.params.amount}</Text>
-				</View>
-				<TouchableOpacity style={styles.button}>
-					<Text style={styles.buttonTitle}>Share Receipt</Text>
-				</TouchableOpacity>
 			</View>
-		</View>
+		</ScrollView>
 	);
 }
 const styles = StyleSheet.create({
@@ -61,6 +70,7 @@ const styles = StyleSheet.create({
 		borderColor: colors.lightGreyPlus,
 		borderRadius: 20,
 		padding: 15,
+		marginBottom: 70,
 	},
 	title: {
 		fontSize: fonts.size.xl,
