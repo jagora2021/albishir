@@ -67,7 +67,7 @@ export default function ProfileScreen({ navigation }) {
 						onPress={logout}
 						style={{ position: "absolute", bottom: 10, right: 0 }}
 					>
-						<MaterialCommunityIcons name="logout" size={30} color="red" />
+						<MaterialCommunityIcons name="logout" size={30} color="#eb4034" />
 					</TouchableOpacity>
 				</View>
 			</ImageBackground>
