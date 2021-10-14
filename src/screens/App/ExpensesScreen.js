@@ -24,6 +24,7 @@ export default function ExpensesScreen() {
 	return (
 		<SafeAreaView style={styles.container}>
 			<SectionList
+				contentContainerStyle={{ paddingBottom: 80 }}
 				sections={DATA}
 				keyExtractor={(item, index) => item + index}
 				renderItem={() => (

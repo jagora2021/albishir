@@ -7,14 +7,35 @@ import {
 	TouchableOpacity,
 	Keyboard,
 	TouchableWithoutFeedback,
+	Platform,
+	Modal,
 } from "react-native";
+import LottieView from "lottie-react-native";
+
 import { CustomHeader } from "../../components";
 import { colors, fonts } from "../../constants";
+
 function TransferAmountScreen({ navigation }) {
+	const [modalVisible, setModalVisible] = useState(false);
 	const [amount, setAmount] = useState("0.00");
+
 	return (
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-			<View style={{ flex: 1 }}>
+			<View style={styles.container}>
+				<Modal visible={modalVisible}>
+					<View style={styles.modalBg}>
+						<LottieView
+							style={{ width: 150 }}
+							source={require("../../../assets/animations/check-mark.json")}
+							autoPlay
+							loop={false}
+							onAnimationFinish={() =>
+								navigation.replace("receipt", { amount })
+							}
+						/>
+					</View>
+				</Modal>
+
 				<CustomHeader />
 				<View style={styles.amountContainer}>
 					<View style={{ flex: 1, marginTop: 30, alignItems: "center" }}>
@@ -36,42 +57,45 @@ function TransferAmountScreen({ navigation }) {
 					<View style={styles.amountRecommendation}>
 						<TouchableOpacity
 							style={styles.recAmountContainer}
+							onPress={() => setAmount("100.00")}
+						>
+							<Text style={styles.recAmount}>₦100.00</Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+							style={styles.recAmountContainer}
+							onPress={() => setAmount("500.00")}
+						>
+							<Text style={styles.recAmount}>₦500.00</Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+							style={styles.recAmountContainer}
 							onPress={() => setAmount("1000.00")}
 						>
 							<Text style={styles.recAmount}>₦1000.00</Text>
-						</TouchableOpacity>
-						<TouchableOpacity
-							style={styles.recAmountContainer}
-							onPress={() => setAmount("2000.00")}
-						>
-							<Text style={styles.recAmount}>₦2000.00</Text>
-						</TouchableOpacity>
-						<TouchableOpacity
-							style={styles.recAmountContainer}
-							onPress={() => setAmount("10000.00")}
-						>
-							<Text style={styles.recAmount}>₦10000.00</Text>
 						</TouchableOpacity>
 					</View>
 				</View>
 				<TouchableOpacity
 					style={styles.button}
-					onPress={() => navigation.replace("receipt", { amount: amount })}
+					onPress={() => setModalVisible(true)}
 				>
-					<Text>Next</Text>
+					<Text style={styles.buttonText}>Next</Text>
 				</TouchableOpacity>
 			</View>
 		</TouchableWithoutFeedback>
 	);
 }
 const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+	},
 	amountContainer: {
 		height: 200,
 		width: "100%",
 		backgroundColor: colors.lightGreen,
 		alignItems: "center",
 		padding: 15,
-		marginVertical: 20,
+		marginBottom: 20,
 	},
 	amountRecommendation: {
 		flexDirection: "row",
@@ -82,12 +106,14 @@ const styles = StyleSheet.create({
 		fontWeight: fonts.weight.bold,
 	},
 	recAmount: {
-		fontWeight: fonts.weight.semiBold,
+		fontWeight:
+			Platform.OS === "ios" ? fonts.weight.semiBold : fonts.weight.bold,
 		fontSize: fonts.size.m,
 	},
 	recAmountContainer: {
 		backgroundColor: colors.primary,
-		padding: 8,
+		width: 90,
+		height: 37,
 		marginHorizontal: 5,
 		borderRadius: 30,
 		justifyContent: "center",
@@ -105,6 +131,16 @@ const styles = StyleSheet.create({
 		alignSelf: "center",
 		alignItems: "center",
 		borderRadius: 15,
+	},
+	buttonText: {
+		fontWeight:
+			Platform.OS === "ios" ? fonts.weight.semiBold : fonts.weight.bold,
+		fontSize: fonts.size.ml,
+	},
+	modalBg: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
 	},
 });
 

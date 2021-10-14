@@ -6,6 +6,7 @@ import {
 	Text,
 	TouchableHighlight,
 	TouchableOpacity,
+	Platform,
 } from "react-native";
 import { fonts, colors } from "../constants";
 
@@ -56,16 +57,19 @@ const styles = StyleSheet.create({
 	},
 	name: {
 		fontSize: fonts.size.ml,
-		fontWeight: fonts.weight.bold,
+		fontWeight:
+			Platform.OS === "ios" ? fonts.weight.semiBold : fonts.weight.bold,
 	},
 	date: {
 		fontSize: fonts.size.s,
-		fontWeight: fonts.weight.bold,
+		fontWeight:
+			Platform.OS === "ios" ? fonts.weight.medium : fonts.weight.semiBold,
 		color: colors.darkGrey,
 	},
 	amount: {
 		fontSize: fonts.size.ml,
-		fontWeight: fonts.weight.bold,
+		fontWeight:
+			Platform.OS === "ios" ? fonts.weight.semiBold : fonts.weight.bold,
 	},
 	transferIconContainer: {
 		width: 15,

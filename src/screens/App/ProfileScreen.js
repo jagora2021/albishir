@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
 	ScrollView,
 	Image,
@@ -8,18 +8,36 @@ import {
 	View,
 	TouchableOpacity,
 	Dimensions,
+	FlatList,
 } from "react-native";
 
 import { CustomHeader, HistoryCard } from "../../components";
 import { colors, fonts } from "../../constants";
 import { useAuthContext } from "../../contexts/AuthProvider";
 
-export default function ProfileScreen() {
+export default function ProfileScreen({ navigation }) {
 	const { currentUser } = useAuthContext();
+	const [transactions, setTransactions] = useState([]);
+
+	useEffect(() => {
+		fetch(
+			"https://fsi.ng/api/woven/transactions?from=2021-01-01&status=ACTIVE&to=2021-11-09&unique_reference=SPKL100007629691012078221614840477696&settlement_status=settled",
+			{
+				headers: {
+					requestId: "30484e41-0120-48b2-b575-2e3149cb5b9e",
+					"api-secret": "vb_ls_bfac75fe54a952841971b6918d06aeb2659523dc92d6",
+					"sandbox-key": "8wnheaSRHdj1gmkvCdN3uWvnf4rd6ni11634149218",
+				},
+			}
+		)
+			.then(res => res.json())
+			.then(data => setTransactions(data.data.transactions))
+			.catch(err => console.log(err.message));
+	}, []);
 
 	return (
 		<View style={styles.container}>
-			<CustomHeader />
+			{Dimensions.get("window").height > 700 && <CustomHeader />}
 			<ImageBackground
 				style={styles.cardBackground}
 				source={require("../../../assets/images/dashboard-card-frame.png")}
@@ -44,12 +62,12 @@ export default function ProfileScreen() {
 
 			<View style={styles.historyHeader}>
 				<Text style={styles.historyHeaderText}>History</Text>
-				<TouchableOpacity>
+				<TouchableOpacity onPress={() => navigation.navigate("History")}>
 					<Text style={styles.viewAllText}>View all</Text>
 				</TouchableOpacity>
 			</View>
 
-			<ScrollView bounces={false}>
+			{/* <ScrollView bounces={false}>
 				<View>
 					<View style={styles.historyCardContainer}>
 						<HistoryCard
@@ -87,7 +105,23 @@ export default function ProfileScreen() {
 						/>
 					</View>
 				</View>
-			</ScrollView>
+			</ScrollView> */}
+
+			<FlatList
+				bounces={false}
+				ListFooterComponent={() => <View style={{ paddingBottom: 80 }} />}
+				keyExtractor={item => item.unique_reference}
+				data={transactions}
+				renderItem={({ item }) => (
+					<View style={styles.historyCardContainer}>
+						<HistoryCard
+							title={item.source_account_name}
+							subTitle={item.created_at}
+							amount={"₦" + item.amount}
+						/>
+					</View>
+				)}
+			/>
 		</View>
 	);
 }
@@ -98,6 +132,7 @@ const styles = StyleSheet.create({
 	},
 	cardBackground: {
 		marginHorizontal: 10,
+		marginTop: Dimensions.get("window").height < 700 ? 20 : 0,
 		borderRadius: 15,
 		overflow: "hidden",
 		padding: 20,

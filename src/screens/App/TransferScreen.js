@@ -13,7 +13,7 @@ import {
 import { ContactCard, CustomHeader } from "../../components";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors, fonts } from "../../constants";
-export default function TransferScreen({navigation}) {
+export default function TransferScreen({ navigation }) {
 	return (
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 			<ScrollView>
@@ -40,7 +40,7 @@ export default function TransferScreen({navigation}) {
 					<ContactCard
 						title={"Yusuf Muhammad Dimari"}
 						subtitle={"08132480901"}
-						onPress={()=>navigation.navigate('transfer amount')}
+						onPress={() => navigation.navigate("transfer amount")}
 					/>
 					<ContactCard
 						title={"Yusuf Muhammad Dimari"}
@@ -62,7 +62,8 @@ export default function TransferScreen({navigation}) {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		padding: 15,
+		paddingHorizontal: 15,
+		paddingBottom: 80,
 	},
 	search: {
 		alignItems: "center",
