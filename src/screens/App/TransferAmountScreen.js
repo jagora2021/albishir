@@ -47,7 +47,8 @@ function TransferAmountScreen({ navigation, route }) {
 						}}
 					>
 						<Text style={styles.receiver}>
-							{route.params.title ? route.params.title : null}
+							{/* {route.params.title ? route.params.title : null} */}
+							{route.params.title}
 						</Text>
 						<Text style={styles.subtitle}>Enter the amount to send</Text>
 						<View style={{ flexDirection: "row" }}>

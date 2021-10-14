@@ -43,7 +43,7 @@ export default function HomeScreen() {
 						color="black"
 						backgroundColor="white"
 						enableLinearGradient
-						size={Dimensions.get("window").height < 700 ? 200 : 250}
+						size={Dimensions.get("window").height < 700 ? 200 : 220}
 					/>
 				</View>
 
