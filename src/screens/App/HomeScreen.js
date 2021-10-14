@@ -1,5 +1,6 @@
 import { AntDesign } from "@expo/vector-icons";
 import React from "react";
+import QRCode from "react-native-qrcode-svg";
 import {
 	Image,
 	StyleSheet,
@@ -30,9 +31,15 @@ export default function HomeScreen() {
 
 			<View style={styles.bottom}>
 				<View style={styles.qrCodeSection}>
-					<Image
+					{/* <Image
 						style={styles.qrCode}
 						source={require("../../../assets/images/QRCode.png")}
+					/> */}
+					<QRCode
+						value={currentUser.displayName}
+						color="black"
+						backgroundColor="white"
+						size={Dimensions.get("window").height < 700 ? 200 : 250}
 					/>
 				</View>
 

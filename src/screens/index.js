@@ -3,6 +3,7 @@ export { default as SignupScreen } from "./Auth/SignupScreen";
 export { default as ChooseAuthScreen } from "./Auth/ChooseAuthScreen";
 export { default as LinkBankScreen } from "./Auth/LinkBankScreen";
 export { default as IdentificationScreen } from "./Auth/IdentificationScreen";
+export { default as QRCameraScreen } from "./App/QRCameraScreen";
 
 export { default as HomeScreen } from "./App/HomeScreen";
 export { default as HistoryScreen } from "./App/HistoryScreen";

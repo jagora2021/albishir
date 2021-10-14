@@ -1,5 +1,11 @@
 import React from "react";
-import { View, TouchableOpacity, StyleSheet, Text } from "react-native";
+import {
+	View,
+	TouchableOpacity,
+	StyleSheet,
+	Text,
+	Platform,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { colors, fonts } from "../constants";
@@ -48,12 +54,14 @@ const styles = StyleSheet.create({
 		marginLeft: 10,
 	},
 	title: {
-		fontWeight: fonts.weight.medium,
+		fontWeight:
+			Platform.OS === "ios" ? fonts.weight.semiBold : fonts.weight.bold,
 		fontSize: fonts.size.ml,
 	},
 	subTitle: {
 		color: colors.darkGrey,
 		fontSize: fonts.size.m,
+		fontWeight: fonts.weight.medium,
 	},
 });
 

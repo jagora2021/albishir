@@ -19,7 +19,10 @@ export default function TransferScreen({ navigation }) {
 			<ScrollView>
 				<View style={styles.container}>
 					<CustomHeader />
-					<TouchableOpacity style={styles.QrCode}>
+					<TouchableOpacity
+						style={styles.QrCode}
+						onPress={() => navigation.navigate("QR Camera")}
+					>
 						<View style={styles.cameraContainer}>
 							<MaterialCommunityIcons name={"qrcode-scan"} size={40} />
 						</View>
@@ -40,19 +43,27 @@ export default function TransferScreen({ navigation }) {
 					<ContactCard
 						title={"Yusuf Muhammad Dimari"}
 						subtitle={"08132480901"}
-						onPress={() => navigation.navigate("transfer amount")}
+						onPress={() =>
+							navigation.navigate("transfer amount", {
+								title: "Yusuf Muhammad Dimari",
+							})
+						}
 					/>
 					<ContactCard
-						title={"Yusuf Muhammad Dimari"}
-						subtitle={"08132480901"}
+						title={"Nafisa Umar"}
+						subtitle={"07033416062"}
+						onPress={() =>
+							navigation.navigate("transfer amount", { title: "Nafisa Umar" })
+						}
 					/>
 					<ContactCard
-						title={"Yusuf Muhammad Dimari"}
-						subtitle={"08132480901"}
-					/>
-					<ContactCard
-						title={"Yusuf Muhammad Dimari"}
-						subtitle={"08132480901"}
+						title={"Yahya Mana Abubakar"}
+						subtitle={"09033889352"}
+						onPress={() =>
+							navigation.navigate("transfer amount", {
+								title: "Yahya Mana Abubakar",
+							})
+						}
 					/>
 				</View>
 			</ScrollView>

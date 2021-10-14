@@ -28,6 +28,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "Albishir is an online payment platform where traders can pay for their goods purchased or services rendered by scanning the QR codes of vendors, making the payment process faster."
   }
 }

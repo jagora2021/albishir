@@ -15,7 +15,7 @@ import LottieView from "lottie-react-native";
 import { CustomHeader } from "../../components";
 import { colors, fonts } from "../../constants";
 
-function TransferAmountScreen({ navigation }) {
+function TransferAmountScreen({ navigation, route }) {
 	const [modalVisible, setModalVisible] = useState(false);
 	const [amount, setAmount] = useState("0.00");
 
@@ -38,7 +38,15 @@ function TransferAmountScreen({ navigation }) {
 
 				<CustomHeader />
 				<View style={styles.amountContainer}>
-					<View style={{ flex: 1, marginTop: 30, alignItems: "center" }}>
+					<View
+						style={{
+							flex: 1,
+							paddingTop: 10,
+							alignItems: "center",
+							width: "100%",
+						}}
+					>
+						<Text style={styles.receiver}>{route.params.title}</Text>
 						<Text style={styles.subtitle}>Enter the amount to send</Text>
 						<View style={{ flexDirection: "row" }}>
 							<Text style={styles.amount}>₦</Text>
@@ -141,6 +149,11 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
+	},
+	receiver: {
+		fontSize: fonts.size.xl,
+		fontWeight: fonts.weight.bold,
+		marginBottom: 10,
 	},
 });
 
