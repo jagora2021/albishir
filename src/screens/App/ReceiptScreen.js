@@ -23,7 +23,7 @@ function Receipt({ route }) {
 				<View style={styles.topContainer}>
 					<Text style={styles.title}>My Receipt</Text>
 					<View style={styles.iconContainer}>
-						<MaterialCommunityIcons name={"check"} size={24} />
+						<MaterialCommunityIcons name={"check"} size={45} />
 					</View>
 					<Text style={styles.title}>Transfer Done</Text>
 				</View>
