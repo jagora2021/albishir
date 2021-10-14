@@ -14,6 +14,7 @@ export default function QRCameraScreen({ navigation }) {
 	}, []);
 
 	const handleBarCodeScanned = ({ type, data }) => {
+		console.log("Data", data);
 		setScanned(true);
 		navigation.navigate("transfer amount", { title: data });
 	};
