@@ -7,7 +7,6 @@ import HistoryTopTab from "../../navs/HistoryTopTab";
 export default function HistoryScreen() {
 	return (
 		<View style={styles.container}>
-			<CustomHeader />
 			<HistoryTopTab />
 		</View>
 	);
@@ -16,5 +15,6 @@ export default function HistoryScreen() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		paddingTop: 20,
 	},
 });

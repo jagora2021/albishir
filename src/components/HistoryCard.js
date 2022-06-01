@@ -1,22 +1,32 @@
+import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import {
 	StyleSheet,
 	Image,
 	View,
 	Text,
-	TouchableHighlight,
-	TouchableOpacity,
+	Pressable,
 	Platform,
 } from "react-native";
 import { fonts, colors } from "../constants";
 
-export default function HistoryCard({ title, subTitle, amount }) {
+export default function HistoryCard({
+	title,
+	subTitle,
+	amount,
+	variant,
+	image,
+}) {
 	return (
-		<TouchableOpacity>
+		<Pressable>
 			<View style={styles.container}>
 				<View style={styles.left}>
 					<View style={styles.imageContainer}>
-						<Image source={require("../../assets/images/profile-pic-sm.png")} />
+						{image ? (
+							<Image source={{ uri: image }} style={styles.image} />
+						) : (
+							<Ionicons name="person" size={24} color={colors.darkGrey} />
+						)}
 						<View style={styles.transferIconContainer}>
 							<Image
 								style={styles.transferIcon}
@@ -29,9 +39,16 @@ export default function HistoryCard({ title, subTitle, amount }) {
 						<Text style={styles.date}>{subTitle}</Text>
 					</View>
 				</View>
-				<Text style={styles.amount}>{amount}</Text>
+				<Text
+					style={[
+						styles.amount,
+						{ color: variant === "income" ? colors.green : colors.red },
+					]}
+				>
+					{amount}
+				</Text>
 			</View>
-		</TouchableOpacity>
+		</Pressable>
 	);
 }
 
@@ -47,11 +64,15 @@ const styles = StyleSheet.create({
 	imageContainer: {
 		width: 40,
 		height: 40,
-		overflow: "hidden",
 		marginRight: 10,
+		backgroundColor: colors.grey,
+		justifyContent: "center",
+		alignItems: "center",
+		borderRadius: 20,
 	},
 	image: {
 		borderRadius: 20,
+		resizeMode: "cover",
 		width: "100%",
 		height: "100%",
 	},

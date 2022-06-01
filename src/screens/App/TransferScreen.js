@@ -10,21 +10,25 @@ import {
 	ScrollView,
 } from "react-native";
 
-import { ContactCard, CustomHeader } from "../../components";
+import { ContactCard, CustomHeader, Screen } from "../../components";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors, fonts } from "../../constants";
 export default function TransferScreen({ navigation }) {
 	return (
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 			<ScrollView>
-				<View style={styles.container}>
-					<CustomHeader />
+				<Screen paddingT>
+					{/* <CustomHeader /> */}
 					<TouchableOpacity
 						style={styles.QrCode}
 						onPress={() => navigation.navigate("QR Camera")}
 					>
 						<View style={styles.cameraContainer}>
-							<MaterialCommunityIcons name={"qrcode-scan"} size={40} />
+							<MaterialCommunityIcons
+								name={"qrcode-scan"}
+								size={40}
+								color={colors.white}
+							/>
 						</View>
 						<Text style={styles.QrText}>Scan QR</Text>
 					</TouchableOpacity>
@@ -65,27 +69,23 @@ export default function TransferScreen({ navigation }) {
 							})
 						}
 					/>
-				</View>
+				</Screen>
 			</ScrollView>
 		</TouchableWithoutFeedback>
 	);
 }
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		paddingHorizontal: 15,
-		paddingBottom: 80,
-	},
 	search: {
 		alignItems: "center",
-		backgroundColor: colors.lightGreyPlus,
+		backgroundColor: colors.lightGrey,
+		borderWidth: 1,
+		borderColor: colors.lightGreyPlus,
 		borderRadius: 8,
 		flexDirection: "row",
 		height: 48,
 		justifyContent: "space-between",
 		marginVertical: 10,
 		padding: 15,
-		paddingLeft: 30,
 		width: "100%",
 	},
 	textInput: {
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
 		width: "100%",
 		borderRadius: 8,
 		height: 90,
-		backgroundColor: colors.primary,
+		backgroundColor: colors.secondary,
 		justifyContent: "center",
 		alignItems: "center",
 		padding: 15,
@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
 		fontSize: fonts.size.xxl,
 		fontWeight: fonts.weight.medium,
 		marginLeft: 10,
+		color: colors.white,
 	},
 	sendTo: {
 		fontSize: fonts.size.l,

@@ -1,5 +1,7 @@
 export default {
 	primary: "#99D4B4",
+	green: "#1EAF30",
+	secondary: "#174140",
 	lightGreen: "#E9FBF0",
 	white: "#fff",
 	black: "#000",
@@ -11,4 +13,7 @@ export default {
 	mediumGrey: "#949494",
 	lightGreyPlus: "#D7D7D7",
 	darkGrey: "#B5B5B5",
+	red: "#eb4034",
 };
+
+// #fc6b68 red

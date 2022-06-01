@@ -27,19 +27,27 @@ export default function QRCameraScreen({ navigation }) {
 
 	return (
 		<View style={styles.container}>
-			<BarCodeScanner
-				onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-				style={{ flex: 1 }}
-			/>
-			{scanned && (
-				<Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
-			)}
+			<View style={styles.barCodeContainer}>
+				<BarCodeScanner
+					onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+					style={{ flex: 1 }}
+				/>
+				{scanned && (
+					<Button
+						title={"Tap to Scan Again"}
+						onPress={() => setScanned(false)}
+					/>
+				)}
+			</View>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
+		flex: 1,
+	},
+	barCodeContainer: {
 		flex: 1,
 	},
 });

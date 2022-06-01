@@ -12,7 +12,7 @@ export default function HistoryTopTab() {
 		<TopTab.Navigator
 			screenOptions={{
 				tabBarStyle: {
-					backgroundColor: colors.primary,
+					backgroundColor: colors.green,
 					marginHorizontal: 20,
 					borderRadius: 8,
 					elevation: 0,
@@ -21,7 +21,7 @@ export default function HistoryTopTab() {
 				tabBarPressColor: colors.primary,
 				tabBarPressOpacity: 0,
 				tabBarActiveTintColor: colors.dark,
-				tabBarInactiveTintColor: colors.dark,
+				tabBarInactiveTintColor: colors.white,
 				tabBarLabelStyle: {
 					fontWeight: fonts.weight.medium,
 					fontSize: fonts.size.ml,

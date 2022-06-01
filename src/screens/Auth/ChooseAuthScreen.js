@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 		color: colors.dark,
 	},
 	bottomTextLink: {
-		color: colors.primary,
+		color: colors.green,
 		fontWeight: fonts.weight.bold,
 	},
 });

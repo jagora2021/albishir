@@ -23,27 +23,16 @@ export default function AppBottomTabs() {
 		<Tab.Navigator
 			screenOptions={{
 				headerShown: false,
-				tabBarActiveBackgroundColor: colors.primary,
-				tabBarItemStyle: { borderRadius: 8 },
-				tabBarInactiveTintColor: colors.black,
-				tabBarActiveTintColor: colors.black,
+				// tabBarInactiveTintColor: colors.white,
+				tabBarActiveTintColor: colors.green,
 				tabBarLabelStyle: {
 					fontSize: 12,
 					marginBottom: 5,
 				},
 				tabBarStyle: {
-					position: "absolute",
-					bottom: 15,
-					left: 15,
-					right: 15,
-					shadowColor: "rgba(0, 0, 0, 0.3)",
-					shadowOffset: { width: 0, height: 0 },
-					shadowOpacity: 1,
-					shadowRadius: 1,
-					elevation: 2,
-					borderTopWidth: 0,
 					height: 59,
-					borderRadius: 8,
+					// backgroundColor: colors.secondary,
+					borderTopWidth: 0,
 				},
 			}}
 		>
@@ -60,6 +49,7 @@ export default function AppBottomTabs() {
 				name="Transfer"
 				component={AppStackNavigator}
 				options={{
+					headerShown: true,
 					tabBarIcon: ({ color, size }) => (
 						<Ionicons name="swap-vertical" size={size} color={color} />
 					),
@@ -69,8 +59,9 @@ export default function AppBottomTabs() {
 				name="History"
 				component={HistoryScreen}
 				options={{
+					headerShown: true,
 					tabBarIcon: ({ color, size }) => (
-						<AntDesign name="bars" size={size} color={color} />
+						<MaterialCommunityIcons name="history" size={size} color={color} />
 					),
 				}}
 			/>
@@ -78,24 +69,15 @@ export default function AppBottomTabs() {
 				name="Profile"
 				component={ProfileScreen}
 				options={{
-					tabBarIcon: ({ color, size }) => (
-						<Ionicons name="ios-person-outline" size={size} color={color} />
-					),
-				}}
-			/>
-			{/* <Tab.Screen
-				name="More"
-				component={MoreScreen}
-				options={{
-					tabBarIcon: ({ color, size }) => (
-						<MaterialCommunityIcons
-							name="dots-vertical"
+					tabBarIcon: ({ color, size, focused }) => (
+						<Ionicons
+							name={focused ? "ios-person" : "ios-person-outline"}
+							size={23}
 							color={color}
-							size={size}
 						/>
 					),
 				}}
-			/> */}
+			/>
 		</Tab.Navigator>
 	);
 }

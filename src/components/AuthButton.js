@@ -1,23 +1,25 @@
 import React from "react";
-import {
-	ActivityIndicator,
-	StyleSheet,
-	Text,
-	TouchableOpacity,
-	View,
-} from "react-native";
+import { ActivityIndicator, StyleSheet, Text, Pressable } from "react-native";
 
 import { colors, fonts } from "../constants";
 
-export default function AuthButton({ title, onPress, isLoading = false }) {
+export default function AuthButton({
+	title,
+	onPress,
+	isLoading = false,
+	full = false,
+}) {
 	return (
-		<TouchableOpacity onPress={onPress} style={styles.button}>
+		<Pressable
+			onPress={onPress}
+			style={[styles.button, { maxWidth: full ? "100%" : 263 }]}
+		>
 			{isLoading ? (
-				<ActivityIndicator size="large" color={colors.white} />
+				<ActivityIndicator size="small" color={colors.white} />
 			) : (
 				<Text style={styles.text}>{title}</Text>
 			)}
-		</TouchableOpacity>
+		</Pressable>
 	);
 }
 
@@ -26,10 +28,9 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		alignItems: "center",
 		width: "100%",
-		maxWidth: 263,
 		height: 54,
-		backgroundColor: colors.primary,
-		borderRadius: 30,
+		backgroundColor: colors.green,
+		borderRadius: 8,
 	},
 	text: {
 		fontSize: fonts.size.l,

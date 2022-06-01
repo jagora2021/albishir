@@ -5,6 +5,7 @@ import {
 	StyleSheet,
 	Text,
 	Platform,
+	Image,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -14,10 +15,14 @@ function ContactCard({ onPress, title, subtitle }) {
 	return (
 		<TouchableOpacity onPress={onPress} style={styles.container}>
 			<View style={styles.icon}>
-				<MaterialCommunityIcons
+				{/* <MaterialCommunityIcons
 					name={"account"}
 					size={24}
 					color={colors.darkGrey}
+				/> */}
+				<Image
+					style={{ width: "100%", height: "100%", resizeMode: "cover" }}
+					source={require("../../assets/images/profile-pic-sm.png")}
 				/>
 			</View>
 			<View style={styles.textContainer}>
@@ -31,21 +36,17 @@ function ContactCard({ onPress, title, subtitle }) {
 const styles = StyleSheet.create({
 	container: {
 		width: "100%",
-		height: 80,
 		borderRadius: 16,
-		borderWidth: 1,
-		borderColor: colors.lightGreyPlus,
-		padding: 15,
 		flexDirection: "row",
 		alignItems: "center",
-		marginVertical: 5,
+		paddingVertical: 8,
 	},
 	icon: {
 		width: 48,
 		height: 48,
 		borderRadius: 30,
 		marginLeft: 10,
-		backgroundColor: colors.lightGreyPlus,
+		backgroundColor: colors.lightGrey,
 		justifyContent: "center",
 		alignItems: "center",
 	},
