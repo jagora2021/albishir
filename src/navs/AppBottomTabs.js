@@ -1,4 +1,5 @@
 import React from "react";
+import { Platform, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
 	AntDesign,
@@ -10,7 +11,7 @@ import {
 	ProfileScreen,
 	HomeScreen,
 	HistoryScreen,
-	MoreScreen,
+	QRDisplayScreen,
 } from "../screens";
 import AppStackNavigator from "./AppStackNavigator";
 
@@ -32,7 +33,7 @@ export default function AppBottomTabs() {
 				tabBarStyle: {
 					height: 59,
 					// backgroundColor: colors.secondary,
-					borderTopWidth: 0,
+					borderTopWidth: Platform.OS === "ios" ? 0.5 : 0,
 				},
 			}}
 		>
@@ -56,10 +57,39 @@ export default function AppBottomTabs() {
 				}}
 			/>
 			<Tab.Screen
+				name="QRDisplay"
+				component={QRDisplayScreen}
+				options={{
+					// headerShown: true,
+					headerTitle: "Scan",
+					tabBarLabel: "",
+					tabBarIcon: ({ color, size, focused }) => (
+						<View
+							style={{
+								width: 70,
+								height: 70,
+								backgroundColor: focused ? colors.green : colors.grey,
+								borderRadius: 50,
+								justifyContent: "center",
+								alignItems: "center",
+								top: -10,
+							}}
+						>
+							<Ionicons
+								name="qr-code-outline"
+								size={size}
+								color={focused ? colors.white : color}
+							/>
+						</View>
+					),
+				}}
+			/>
+			<Tab.Screen
 				name="History"
 				component={HistoryScreen}
 				options={{
 					headerShown: true,
+					headerTitle: "Transactions",
 					tabBarIcon: ({ color, size }) => (
 						<MaterialCommunityIcons name="history" size={size} color={color} />
 					),
@@ -72,7 +102,7 @@ export default function AppBottomTabs() {
 					tabBarIcon: ({ color, size, focused }) => (
 						<Ionicons
 							name={focused ? "ios-person" : "ios-person-outline"}
-							size={23}
+							size={size}
 							color={color}
 						/>
 					),
