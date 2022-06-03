@@ -53,19 +53,23 @@ export default function QRDisplayScreen() {
 					source={brImg}
 					resizeMode="cover"
 				>
-					<View style={styles.qrCodeSection}>
-						<QRCode
-							value={currentUser.displayName}
-							color="black"
-							backgroundColor="white"
-							// enableLinearGradient
-							// linearGradient={[colors.primary, colors.green]}
-							size={
-								Dimensions.get("window").height < 700
-									? Dimensions.get("window").width * 0.5
-									: Dimensions.get("window").width * 0.55
-							}
-						/>
+					<View style={styles.qrWrapper}>
+						<View style={styles.qrCodeSection}>
+							<QRCode
+								value={currentUser.displayName}
+								color="black"
+								backgroundColor="white"
+								enableLinearGradient
+								// linearGradient={[colors.primary, colors.green]}
+								size={
+									Dimensions.get("window").height < 700
+										? Dimensions.get("window").width * 0.5
+										: Dimensions.get("window").width * 0.55
+								}
+							/>
+						</View>
+
+						<Text style={styles.captionText}>Scan to pay</Text>
 					</View>
 				</ImageBackground>
 			</View>
@@ -95,6 +99,21 @@ const styles = StyleSheet.create({
 		fontSize: fonts.size.l,
 		fontWeight: fonts.weight.bold,
 	},
+	printButton: {
+		borderColor: colors.dark,
+		padding: 8,
+		justifyContent: "center",
+		flexDirection: "row",
+		alignItems: "center",
+		marginLeft: "auto",
+	},
+	printText: {
+		fontWeight: fonts.weight.bold,
+	},
+	printIcon: {
+		marginLeft: 5,
+	},
+
 	backgroundWrapper: {
 		marginLeft: "auto",
 		marginRight: "auto",
@@ -110,6 +129,14 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		borderRadius: 16,
 	},
+	qrWrapper: {
+		width: Dimensions.get("window").height < 700 ? 270 : 320,
+		height: Dimensions.get("window").height < 700 ? 350 : 430,
+		borderRadius: 8,
+		backgroundColor: colors.white,
+		justifyContent: "center",
+		alignItems: "center",
+	},
 	qrCodeSection: {
 		borderColor: colors.black,
 		borderWidth: 5,
@@ -118,21 +145,13 @@ const styles = StyleSheet.create({
 		backgroundColor: colors.white,
 	},
 	qrCode: {
-		width: Dimensions.get("window").height < 700 ? 200 : 250,
-		height: Dimensions.get("window").height < 700 ? 200 : 250,
+		width: Dimensions.get("window").height < 700 ? 180 : 230,
+		height: Dimensions.get("window").height < 700 ? 180 : 230,
 	},
-	printButton: {
-		borderColor: colors.dark,
-		padding: 8,
-		justifyContent: "center",
-		flexDirection: "row",
-		alignItems: "center",
-		marginLeft: "auto",
-	},
-	printText: {
-		fontWeight: fonts.weight.bold,
-	},
-	printIcon: {
-		marginLeft: 5,
+	captionText: {
+		position: "absolute",
+		bottom: 30,
+		fontSize: fonts.size.l,
+		fontWeight: fonts.weight.semiBold,
 	},
 });

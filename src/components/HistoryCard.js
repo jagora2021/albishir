@@ -9,6 +9,7 @@ import {
 	Platform,
 } from "react-native";
 import { fonts, colors } from "../constants";
+import debitIcon from "../../assets/images/transfer-sender-icon.png";
 
 export default function HistoryCard({
 	title,
@@ -28,10 +29,7 @@ export default function HistoryCard({
 							<Ionicons name="person" size={24} color={colors.darkGrey} />
 						)}
 						<View style={styles.transferIconContainer}>
-							<Image
-								style={styles.transferIcon}
-								source={require("../../assets/images/transfer-sender-icon.png")}
-							/>
+							<Image style={styles.transferIcon} source={debitIcon} />
 						</View>
 					</View>
 					<View>

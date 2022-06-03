@@ -3,6 +3,7 @@ import { Platform, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
 	AntDesign,
+	Feather,
 	Ionicons,
 	MaterialCommunityIcons,
 } from "@expo/vector-icons";
@@ -25,6 +26,7 @@ export default function AppBottomTabs() {
 			screenOptions={{
 				headerShown: false,
 				// tabBarInactiveTintColor: colors.white,
+				tabBarShowLabel: true,
 				tabBarActiveTintColor: colors.green,
 				tabBarLabelStyle: {
 					fontSize: 12,
@@ -52,7 +54,8 @@ export default function AppBottomTabs() {
 				options={{
 					headerShown: true,
 					tabBarIcon: ({ color, size }) => (
-						<Ionicons name="swap-vertical" size={size} color={color} />
+						// <Ionicons name="swap-vertical" size={size} color={color} />
+						<Feather name="send" size={size} color={color} />
 					),
 				}}
 			/>

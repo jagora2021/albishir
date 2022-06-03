@@ -5,3 +5,8 @@ export { default as AuthButton } from "./AuthButton";
 export { default as ErrorMessage } from "./ErrorMessage";
 export { default as AppTextInput } from "./AppTextInput";
 export { default as Screen } from "./Screen";
+
+export { default as FrequentTransactions } from "./HomeFrequentTransactions";
+export { default as BalanceCard } from "./HomeBalanceCard";
+export { default as SelectPaymentOptions } from "./HomePaymentSelectOption";
+export { default as RecentTransactions } from "./HomeRecentTransactions";
