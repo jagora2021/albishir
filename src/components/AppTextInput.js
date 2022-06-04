@@ -1,10 +1,11 @@
 import React from "react";
 import {
+	Platform,
 	StyleSheet,
 	Text,
-	View,
 	TextInput,
 	TouchableOpacity,
+	View,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -56,7 +57,8 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 	},
 	label: {
-		fontWeight: fonts.weight.bold,
+		fontWeight:
+			Platform.OS === "ios" ? fonts.weight.semiBold : fonts.weight.bold,
 		color: colors.dark,
 		marginBottom: 5,
 	},

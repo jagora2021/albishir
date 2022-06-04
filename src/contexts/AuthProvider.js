@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
 						.collection("virtualUserBank")
 						.add({ ...virtualUserData });
 				})
-				.catch(err => {
+				.catch((err) => {
 					console.log(err);
 				});
 		} catch (err) {
@@ -48,11 +48,7 @@ export function AuthProvider({ children }) {
 	};
 
 	const login = async (email, password) => {
-		try {
-			await auth.signInWithEmailAndPassword(email, password);
-		} catch (err) {
-			console.log(err.message);
-		}
+		await auth.signInWithEmailAndPassword(email, password);
 	};
 
 	const logout = async () => {

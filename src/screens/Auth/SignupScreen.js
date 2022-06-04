@@ -15,7 +15,7 @@ import {
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import { AppTextInput, AuthButton } from "../../components";
+import { AppTextInput, AuthButton, Screen } from "../../components";
 import { colors, fonts } from "../../constants";
 import { useAuthContext } from "../../contexts/AuthProvider";
 import { useNavigation } from "@react-navigation/native";
@@ -50,7 +50,7 @@ export default function SignupScreen() {
 		<ScrollView>
 			<KeyboardAvoidingView behavior="padding">
 				<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-					<View style={styles.container}>
+					<Screen paddingT>
 						<View style={styles.header}>
 							<Text style={styles.title}>Create account!👋</Text>
 							<Text style={styles.subtitle}>
@@ -151,7 +151,7 @@ export default function SignupScreen() {
 								</>
 							)}
 						</Formik>
-					</View>
+					</Screen>
 				</TouchableWithoutFeedback>
 			</KeyboardAvoidingView>
 		</ScrollView>
@@ -159,18 +159,14 @@ export default function SignupScreen() {
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		padding: 20,
-	},
 	header: {},
 	title: {
 		fontSize: 30,
 		fontWeight: fonts.weight.semiBold,
 	},
 	subtitle: {
-		fontSize: 16,
-		fontWeight: fonts.weight.semiBold,
+		fontWeight:
+			Platform.OS === "ios" ? fonts.weight.medium : fonts.weight.semiBold,
 		color: colors.dark,
 		opacity: 0.5,
 	},
