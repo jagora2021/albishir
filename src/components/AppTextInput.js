@@ -24,7 +24,10 @@ const AppTextInput = ({
 }) => {
 	return (
 		<View>
-			<Text style={styles.label}>{label}</Text>
+			<View style={styles.labelAndErrorContainer}>
+				<Text style={styles.label}>{label}</Text>
+				{error ? <ErrorMessage error={error} /> : null}
+			</View>
 			<View style={styles.textInputContainer}>
 				<TextInput
 					style={styles.textInput}
@@ -41,7 +44,6 @@ const AppTextInput = ({
 					</TouchableOpacity>
 				)}
 			</View>
-			{error ? <ErrorMessage error={error} /> : null}
 		</View>
 	);
 };
@@ -49,6 +51,10 @@ const AppTextInput = ({
 export default AppTextInput;
 
 const styles = StyleSheet.create({
+	labelAndErrorContainer: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+	},
 	label: {
 		fontWeight: fonts.weight.bold,
 		color: colors.dark,

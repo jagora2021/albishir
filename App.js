@@ -1,12 +1,17 @@
 import "react-native-gesture-handler";
 import React from "react";
-import { StyleSheet, SafeAreaView, StatusBar } from "react-native";
+import { StyleSheet, SafeAreaView, StatusBar, LogBox } from "react-native";
 
 import { colors } from "./src/constants";
 import Navigator from "./src/navs";
 import { AuthProvider } from "./src/contexts/AuthProvider";
 
 export default function App() {
+	LogBox.ignoreLogs([
+		"ViewPropTypes will be removed",
+		"AsyncStorage has been extracted from react-native core",
+	]);
+
 	return (
 		<AuthProvider>
 			<SafeAreaView style={styles.container}>

@@ -14,7 +14,7 @@ import { colors, fonts } from "../../constants";
 import { useAuthContext } from "../../contexts/AuthProvider";
 
 export default function ProfileScreen() {
-	const { currentUser } = useAuthContext();
+	const { currentUser, logout } = useAuthContext();
 
 	return (
 		<View style={styles.container}>
@@ -26,7 +26,12 @@ export default function ProfileScreen() {
 					style={styles.profileImage}
 					source={require("../../../assets/images/profile-pic-lg.png")}
 				/> */}
-					<Ionicons name="person" size={70} color={colors.darkGrey} />
+					<Ionicons
+						onPress={logout}
+						name="person"
+						size={70}
+						color={colors.darkGrey}
+					/>
 				</View>
 				<Text style={styles.name}>{currentUser.displayName}</Text>
 			</View>

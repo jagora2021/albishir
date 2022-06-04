@@ -9,21 +9,22 @@ import {
 	TouchableOpacity,
 	TouchableWithoutFeedback,
 	View,
+	KeyboardAvoidingView,
+	Platform,
 } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import { AppTextInput, AuthButton, CustomHeader } from "../../components";
+import { AppTextInput, AuthButton } from "../../components";
 import { colors, fonts } from "../../constants";
 import { useAuthContext } from "../../contexts/AuthProvider";
+import { useNavigation } from "@react-navigation/native";
 
-export default function SignupScreen({ navigation }) {
+export default function SignupScreen() {
+	const navigation = useNavigation();
+
 	const { setSignupDetails, signupDetails } = useAuthContext();
 
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
 	const [isTermsAndConditionAgreed, setIsTermsAndConditionAgreed] =
 		useState(false);
 
@@ -34,7 +35,7 @@ export default function SignupScreen({ navigation }) {
 		password: Yup.string().min(6).max(255).required().label("Password"),
 	});
 
-	const handleSubmit = () => {
+	const handleSubmit = ({ firstName, lastName, email, password }) => {
 		setSignupDetails({
 			...signupDetails,
 			firstName,
@@ -47,111 +48,112 @@ export default function SignupScreen({ navigation }) {
 
 	return (
 		<ScrollView>
-			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-				<View style={styles.container}>
-					{/* <CustomHeader /> */}
-					<View style={styles.header}>
-						<Text style={styles.title}>Create account!👋</Text>
-						<Text style={styles.subtitle}>
-							You've been missed. Please login!
-						</Text>
-					</View>
+			<KeyboardAvoidingView behavior="padding">
+				<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+					<View style={styles.container}>
+						<View style={styles.header}>
+							<Text style={styles.title}>Create account!👋</Text>
+							<Text style={styles.subtitle}>
+								Fill in your details to register a free account!
+							</Text>
+						</View>
 
-					<Formik
-						initialValues={{
-							firstName: "",
-							lastName: "",
-							email: "",
-							password: "",
-						}}
-						onSubmit={handleSubmit}
-						validationSchema={validationSchema}
-					>
-						{({ handleChange, errors, handleSubmit, values }) => (
-							<>
-								<View style={styles.form}>
-									<View style={styles.inputContainer}>
-										<AppTextInput
-											label="First name"
-											placeholder="E.g, John"
-											value={values.firstName}
-											onChangeText={handleChange("firstName")}
-											error={errors.firstName}
-										/>
-									</View>
+						<Formik
+							initialValues={{
+								firstName: "",
+								lastName: "",
+								email: "",
+								password: "",
+							}}
+							onSubmit={handleSubmit}
+							validationSchema={validationSchema}
+						>
+							{({ handleChange, errors, handleSubmit, values }) => (
+								<>
+									<View style={styles.form}>
+										<View style={styles.inputContainer}>
+											<AppTextInput
+												label="First name"
+												placeholder="E.g, John"
+												value={values.firstName}
+												onChangeText={handleChange("firstName")}
+												error={errors.firstName}
+											/>
+										</View>
 
-									<View style={styles.inputContainer}>
-										<AppTextInput
-											label="Last name"
-											placeholder="E.g, Doe"
-											value={values.lastName}
-											onChangeText={handleChange("lastName")}
-											error={errors.lastName}
-										/>
-									</View>
+										<View style={styles.inputContainer}>
+											<AppTextInput
+												label="Last name"
+												placeholder="E.g, Doe"
+												value={values.lastName}
+												onChangeText={handleChange("lastName")}
+												error={errors.lastName}
+											/>
+										</View>
 
-									<View style={styles.inputContainer}>
-										<AppTextInput
-											label="Email address"
-											placeholder="Email Address"
-											keyboardType="email-address"
-											autoCapitalize="none"
-											value={values.email}
-											onChangeText={handleChange("email")}
-											error={errors.email}
-										/>
-									</View>
+										<View style={styles.inputContainer}>
+											<AppTextInput
+												label="Email address"
+												placeholder="Email Address"
+												keyboardType="email-address"
+												autoCapitalize="none"
+												value={values.email}
+												onChangeText={handleChange("email")}
+												error={errors.email}
+											/>
+										</View>
 
-									<View style={styles.inputContainer}>
-										<AppTextInput
-											label="Password"
-											placeholder="Enter your password"
-											secureTextEntry
-											icon="eye-off"
-											value={values.password}
-											onChangeText={handleChange("password")}
-											error={errors.password}
-										/>
-									</View>
+										<View style={styles.inputContainer}>
+											<AppTextInput
+												label="Password"
+												placeholder="Enter your password"
+												secureTextEntry
+												icon="eye-off"
+												value={values.password}
+												onChangeText={handleChange("password")}
+												error={errors.password}
+											/>
+										</View>
 
-									<Pressable
-										style={styles.termsAndConditionContainer}
-										onPress={() =>
-											setIsTermsAndConditionAgreed((prev) => !prev)
-										}
-									>
-										<Ionicons
-											name={
-												isTermsAndConditionAgreed
-													? "checkbox"
-													: "checkbox-outline"
+										<Pressable
+											style={styles.termsAndConditionContainer}
+											onPress={() =>
+												setIsTermsAndConditionAgreed((prev) => !prev)
 											}
-											size={24}
-											color={colors.green}
-										/>
-										<Text style={styles.termsAndConditionText}>
-											I agree to the terms and conditions
-										</Text>
-									</Pressable>
-								</View>
+										>
+											<Ionicons
+												name={
+													isTermsAndConditionAgreed
+														? "checkbox"
+														: "checkbox-outline"
+												}
+												size={24}
+												color={colors.green}
+											/>
+											<Text style={styles.termsAndConditionText}>
+												I agree to the terms and conditions
+											</Text>
+										</Pressable>
+									</View>
 
-								<View style={styles.bottom}>
-									<AuthButton title="Continue" full onPress={handleSubmit} />
-									<TouchableOpacity
-										style={styles.bottomTextContainer}
-										onPress={() => navigation.navigate("Login")}
-									>
-										<Text style={styles.bottomText}>
-											Already have an account?{" "}
-											<Text style={styles.bottomTextLink}>Log in</Text>
-										</Text>
-									</TouchableOpacity>
-								</View>
-							</>
-						)}
-					</Formik>
-				</View>
-			</TouchableWithoutFeedback>
+									<View style={styles.bottom}>
+										<AuthButton title="Continue" full onPress={handleSubmit} />
+										<TouchableOpacity
+											style={styles.bottomTextContainer}
+											onPress={() => navigation.navigate("Login")}
+										>
+											<Text style={styles.bottomText}>
+												Already have an account?{" "}
+												<Text style={styles.bottomTextLink}>Log in</Text>
+											</Text>
+										</TouchableOpacity>
+									</View>
+								</>
+							)}
+						</Formik>
+					</View>
+				</TouchableWithoutFeedback>
+			</KeyboardAvoidingView>
 		</ScrollView>
 	);
 }
