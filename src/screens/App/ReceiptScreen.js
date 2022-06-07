@@ -9,9 +9,9 @@ import {
 } from "react-native";
 
 import { colors, fonts } from "../../constants";
-import { CustomHeader } from "../../components";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useAuthContext } from "../../contexts/AuthProvider";
+import profileImg from "../../../assets/images/profile-pic-lg.png";
 
 function Receipt({ route }) {
 	const { currentUser } = useAuthContext();
@@ -32,10 +32,7 @@ function Receipt({ route }) {
 
 				<View style={styles.bottomContainer}>
 					<View style={styles.receierDetails}>
-						<Image
-							source={require("../../../assets/images/profile-pic-lg.png")}
-							style={styles.img}
-						/>
+						<Image source={profileImg} style={styles.img} />
 						<View style={styles.receiverDetail}>
 							<Text style={styles.transTitle}>Receipt</Text>
 							<Text style={styles.transSubTitle}>

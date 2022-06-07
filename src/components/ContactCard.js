@@ -11,19 +11,22 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { colors, fonts } from "../constants";
 
-function ContactCard({ onPress, title, subtitle }) {
+export default function ContactCard({ onPress, title, subtitle, image }) {
 	return (
 		<TouchableOpacity onPress={onPress} style={styles.container}>
 			<View style={styles.icon}>
-				{/* <MaterialCommunityIcons
-					name={"account"}
-					size={24}
-					color={colors.darkGrey}
-				/> */}
-				<Image
-					style={{ width: "100%", height: "100%", resizeMode: "cover" }}
-					source={require("../../assets/images/profile-pic-sm.png")}
-				/>
+				{image ? (
+					<Image
+						style={{ width: "100%", height: "100%", resizeMode: "cover" }}
+						source={{ uri: image }}
+					/>
+				) : (
+					<MaterialCommunityIcons
+						name={"account"}
+						size={24}
+						color={colors.darkGrey}
+					/>
+				)}
 			</View>
 			<View style={styles.textContainer}>
 				<Text style={styles.title}>{title}</Text>
@@ -49,6 +52,7 @@ const styles = StyleSheet.create({
 		backgroundColor: colors.lightGrey,
 		justifyContent: "center",
 		alignItems: "center",
+		overflow: "hidden",
 	},
 	textContainer: {
 		flexDirection: "column",
@@ -65,5 +69,3 @@ const styles = StyleSheet.create({
 		fontWeight: fonts.weight.medium,
 	},
 });
-
-export default ContactCard;

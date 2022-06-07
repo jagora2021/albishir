@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Platform } from "react-native";
-import React from "react";
+import { StyleSheet, Text, View, Platform, Switch } from "react-native";
+import React, { useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { colors, fonts } from "../constants";
@@ -7,12 +7,28 @@ import { colors, fonts } from "../constants";
 const HomeBalanceCard = () => {
 	const balanceIsInProfit = true;
 
+	const [isShowBalance, setIsShowBalance] = useState(false);
+
+	const toggleSwitch = () => setIsShowBalance((prev) => !prev);
+
 	return (
 		<View style={styles.top}>
 			<View style={styles.amountContainer}>
 				<Text style={styles.totalText}>Total Balance</Text>
-				<Text style={styles.amount}>₦252,400.00</Text>
+				<View style={styles.balanceAndSwitchContainer}>
+					<Text style={styles.amount}>
+						{isShowBalance ? "₦252,400.00" : "******"}
+					</Text>
+
+					<Switch
+						onValueChange={toggleSwitch}
+						ios_backgroundColor={colors.grey}
+						value={isShowBalance}
+						thumbColor={isShowBalance ? colors.secondary : colors.grey}
+					/>
+				</View>
 			</View>
+
 			<View style={styles.statsContainer}>
 				<Text style={styles.statTitle}>
 					{balanceIsInProfit ? "Profit" : "Drop"}
@@ -65,6 +81,11 @@ const styles = StyleSheet.create({
 	amount: {
 		fontSize: fonts.size.xxl,
 		fontWeight: fonts.weight.bold,
+	},
+	balanceAndSwitchContainer: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
 	},
 	statsContainer: {
 		flexDirection: "row",

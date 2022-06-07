@@ -9,7 +9,7 @@ import {
 import QRCameraScreen from "../screens/App/QRCameraScreen";
 
 const Stack = createStackNavigator();
-function AppStackNavigator(props) {
+function AppStackNavigator() {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
 			<Stack.Screen name={"transfer"} component={TransferScreen} />
