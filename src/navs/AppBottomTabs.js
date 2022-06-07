@@ -13,8 +13,8 @@ import {
 	HomeScreen,
 	HistoryScreen,
 	QRDisplayScreen,
+	TransferScreen,
 } from "../screens";
-import AppStackNavigator from "./AppStackNavigator";
 
 import { colors } from "../constants";
 
@@ -50,7 +50,7 @@ export default function AppBottomTabs() {
 			/>
 			<Tab.Screen
 				name="Transfer"
-				component={AppStackNavigator}
+				component={TransferScreen}
 				options={{
 					headerShown: true,
 					tabBarIcon: ({ color, size }) => (

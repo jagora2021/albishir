@@ -71,7 +71,7 @@ export default function TransferScreen({ navigation }) {
 							image={item.image}
 							onPress={() =>
 								navigation.navigate("transfer amount", {
-									title: item.phoneNumber,
+									title: item.name,
 								})
 							}
 						/>

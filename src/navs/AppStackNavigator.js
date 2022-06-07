@@ -6,16 +6,18 @@ import {
 	ReceiptScreen,
 	TransferAmountScreen,
 } from "../screens";
+import AppBottomTabs from "./AppBottomTabs";
 import QRCameraScreen from "../screens/App/QRCameraScreen";
 
 const Stack = createStackNavigator();
 function AppStackNavigator() {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
-			<Stack.Screen name={"transfer"} component={TransferScreen} />
-			<Stack.Screen name={"transfer amount"} component={TransferAmountScreen} />
-			<Stack.Screen name={"receipt"} component={ReceiptScreen} />
-			<Stack.Screen name={"QR Camera"} component={QRCameraScreen} />
+			<Stack.Screen name="home" component={AppBottomTabs} />
+			<Stack.Screen name="transfer" component={TransferScreen} />
+			<Stack.Screen name="transfer amount" component={TransferAmountScreen} />
+			<Stack.Screen name="receipt" component={ReceiptScreen} />
+			<Stack.Screen name="QR Camera" component={QRCameraScreen} />
 		</Stack.Navigator>
 	);
 }
