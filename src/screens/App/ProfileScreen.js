@@ -1,120 +1,177 @@
-import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
-import QRCode from "react-native-qrcode-svg";
 import {
-	StyleSheet,
-	Text,
-	View,
-	TouchableOpacity,
-	Dimensions,
+  StyleSheet,
+  View,
+  Dimensions,
+  TouchableOpacity,
+  Text,
+  ScrollView,
 } from "react-native";
 
-import { CustomHeader } from "../../components";
 import { colors, fonts } from "../../constants";
 import { useAuthContext } from "../../contexts/AuthProvider";
 
 export default function ProfileScreen() {
-	const { currentUser, logout } = useAuthContext();
+  const { currentUser, logout } = useAuthContext();
 
-	return (
-		<View style={styles.container}>
-			<CustomHeader />
+  return (
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.userInfoContainer}>
+          <TouchableOpacity onPress={logout}>
+            <View style={styles.userImage}>
+              <Ionicons name="person-outline" size={65} color="#a1a1a1" />
+              <TouchableOpacity style={styles.editIcon}>
+                <MaterialCommunityIcons
+                  name="pencil-outline"
+                  size={20}
+                  color={colors.white}
+                />
+              </TouchableOpacity>
+            </View>
+          </TouchableOpacity>
 
-			<View style={styles.profileSection}>
-				<View style={styles.avatarBg}>
-					{/* <Image
-					style={styles.profileImage}
-					source={require("../../../assets/images/profile-pic-lg.png")}
-				/> */}
-					<Ionicons
-						onPress={logout}
-						name="person"
-						size={70}
-						color={colors.darkGrey}
-					/>
-				</View>
-				<Text style={styles.name}>{currentUser.displayName}</Text>
-			</View>
+          <Text style={styles.userName}>{currentUser.displayName}</Text>
+        </View>
 
-			<View style={styles.bottom}>
-				<View style={styles.qrCodeSection}>
-					{/* <Image
-						style={styles.qrCode}
-						source={require("../../../assets/images/QRCode.png")}
-					/> */}
-					<QRCode
-						value={currentUser.displayName}
-						color="black"
-						backgroundColor="white"
-						enableLinearGradient
-						size={Dimensions.get("window").height < 700 ? 200 : 220}
-					/>
-				</View>
+        <View style={styles.settingsContainer}>
+          <TouchableOpacity style={styles.settingItem}>
+            <View style={styles.settingIconContainer}>
+              <MaterialCommunityIcons
+                name="lock-outline"
+                size={24}
+                color="black"
+              />
+            </View>
+            <Text style={styles.settingtext}>Change Login password</Text>
 
-				<TouchableOpacity style={styles.printButton}>
-					<Text>Print QR</Text>
-					<AntDesign
-						style={styles.printIcon}
-						name="printer"
-						size={24}
-						color={colors.dark}
-					/>
-				</TouchableOpacity>
-			</View>
-		</View>
-	);
+            <MaterialCommunityIcons
+              name="chevron-right"
+              size={28}
+              color={colors.darkGrey}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.settingItem}>
+            <View style={styles.settingIconContainer}>
+              <MaterialCommunityIcons
+                name="lock-outline"
+                size={24}
+                color="black"
+              />
+            </View>
+            <Text style={styles.settingtext}>Support</Text>
+
+            <MaterialCommunityIcons
+              name="chevron-right"
+              size={28}
+              color={colors.darkGrey}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.settingItem}>
+            <View style={styles.settingIconContainer}>
+              <MaterialCommunityIcons
+                name="lock-outline"
+                size={24}
+                color="black"
+              />
+            </View>
+            <Text style={styles.settingtext}>Privacy and Security</Text>
+
+            <MaterialCommunityIcons
+              name="chevron-right"
+              size={28}
+              color={colors.darkGrey}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.settingItem}>
+            <View style={styles.settingIconContainer}>
+              <MaterialCommunityIcons
+                name="lock-outline"
+                size={24}
+                color="black"
+              />
+            </View>
+            <Text style={[styles.settingtext, styles.logoutText]}>Log out</Text>
+
+            <MaterialCommunityIcons
+              name="chevron-right"
+              size={28}
+              color={colors.darkGrey}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
-	profileSection: {
-		alignItems: "center",
-		marginVertical: 15,
-		flex: 0.3,
-	},
-	profileImage: {
-		width: Dimensions.get("window").height < 700 ? 120 : 150,
-		height: Dimensions.get("window").height < 700 ? 120 : 150,
-		borderRadius: 75,
-		backgroundColor: colors.grey,
-	},
-	name: {
-		textAlign: "center",
-		fontSize: fonts.size.xl,
-		fontWeight: fonts.weight.bold,
-		marginTop: 10,
-	},
-	bottom: {
-		flex: 0.7,
-		alignItems: "center",
-	},
-	qrCodeSection: {},
-	qrCode: {
-		width: Dimensions.get("window").height < 700 ? 200 : 250,
-		height: Dimensions.get("window").height < 700 ? 200 : 250,
-	},
-	printButton: {
-		width: "70%",
-		borderColor: colors.dark,
-		borderWidth: 1,
-		height: 50,
-		justifyContent: "center",
-		alignItems: "center",
-		borderRadius: 16,
-		marginTop: 30,
-	},
-	printIcon: {
-		position: "absolute",
-		right: 30,
-	},
-	avatarBg: {
-		width: Dimensions.get("window").height < 700 ? 120 : 150,
-		height: Dimensions.get("window").height < 700 ? 120 : 150,
-		borderRadius: 75,
-		backgroundColor: colors.grey,
-		justifyContent: "center",
-		alignItems: "center",
-	},
+  container: {
+    flex: 1,
+    backgroundColor: colors.grey,
+  },
+  userInfoContainer: {
+    height: 270,
+    alignItems: "center",
+    paddingVertical: 25,
+    justifyContent: "center",
+  },
+  userImage: {
+    backgroundColor: colors.white,
+    width: 120,
+    height: 120,
+    borderRadius: 45,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  editIcon: {
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+    backgroundColor: colors.green,
+    width: 35,
+    height: 35,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 20,
+  },
+  userName: {
+    fontSize: fonts.size.l,
+    fontWeight: fonts.weight.semiBold,
+    color: colors.secondary,
+    marginTop: 20,
+  },
+  settingsContainer: {
+    backgroundColor: colors.white,
+    flex: 1,
+    borderTopRightRadius: 36,
+    borderTopLeftRadius: 36,
+    paddingTop: 60,
+  },
+  settingItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginHorizontal: 30,
+    paddingVertical: 15,
+    borderColor: colors.lightGreyPlus,
+    borderTopWidth: 1,
+  },
+  settingIconContainer: {
+    width: 60,
+    height: 60,
+    backgroundColyor: colors.grey,
+    borderRadius: 20,
+    marginRight: 15,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  settingtext: {
+    flex: 1,
+    fontSize: fonts.size.ml,
+    // fontWeight: fonts.weight.medium,
+  },
+  logoutText: {
+    color: colors.red,
+  },
 });
